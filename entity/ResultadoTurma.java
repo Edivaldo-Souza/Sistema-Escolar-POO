@@ -1,4 +1,4 @@
-package implementarDiagrama;
+package entity;
 
 public class ResultadoTurma {
 	private Disciplina disciplina;
