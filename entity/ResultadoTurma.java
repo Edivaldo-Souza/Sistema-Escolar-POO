@@ -36,5 +36,10 @@ public class ResultadoTurma {
 	public void setFrequencia(float frequencia) {
 		this.frequencia = frequencia;
 	}
+	
+	void editar() {
+		// Editar no banco de dados
+
+	}
 
 }
