@@ -27,4 +27,16 @@ public class Disciplina {
 	            this.codigo = codigo;
 	}
 
+	void cadastrar(Disciplina novo) {
+		// Inserir no banco de dados
+	}
+
+	void deletar() {
+		// Deletar no banco de dados
+	}
+
+	void editar() {
+		// Editar no banco de dados
+
+	}
 }
