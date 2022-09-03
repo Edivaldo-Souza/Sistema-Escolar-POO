@@ -1,23 +1,25 @@
-class Professor{
+package entity;
+
+import ;
+
+class Professor {
 
 	private String nome;
 	private Endereco endereco;
 	private String cpf;
-	private Turmas[] turmas;
+	private Turma[] turmas;
 
-
-	Professor(String nome,String cpf){
+	Professor(String nome, String cpf) {
 		this.setCpf(cpf);
 		this.setEndereco(endereco);
 		this.setNome(nome);
 	}
 
-
 	public void setNome(String nome) {
-		if(this.nome.isEmpty())
-		System.out.prinln("Nome invalido");
+		if (this.nome.isEmpty())
+			System.out.println("Nome invalido");
 		else
-		this.nome = nome;
+			this.nome = nome;
 
 	}
 
@@ -26,11 +28,11 @@ class Professor{
 
 	}
 
-	public void setCpf(String cpf) {	
-		if(this.cpf.isEmpty())
-		System.out.prinln("Nome invalido");
+	public void setCpf(String cpf) {
+		if (this.cpf.isEmpty())
+			System.out.println("Nome invalido");
 		else
-		this.cpf = cpf;
+			this.cpf = cpf;
 
 	}
 
@@ -46,25 +48,21 @@ class Professor{
 		return this.endereco;
 	}
 
-	public Turmas[] getTurmas() {
+	public Turma[] getTurmas() {
 		return this.turmas;
 	}
 
-	void cadastrar(Professor novo){
-		//Inserir no banco de dados
+	void cadastrar(Professor novo) {
+		// Inserir no banco de dados
 	}
 
-	void deletar(){
-		//Deletar no banco de dados
+	void deletar() {
+		// Deletar no banco de dados
 	}
 
-	void editar(){
-		//Editar no banco de dados
+	void editar() {
+		// Editar no banco de dados
 
 	}
-
-
-
-
 
 }

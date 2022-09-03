@@ -1,3 +1,4 @@
+package entity;
 class Turma {
   private int id;
   private Disciplina disciplina;
