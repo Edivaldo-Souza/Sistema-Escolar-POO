@@ -1,53 +1,30 @@
 package entity;
 
-class Disciplina {
+public class Disciplina {
+	private String nome;
+	private String codigo;
 
-	private String rua;
-	private String bairro;
-	private Integer numero;
+	public String getNome() {
+		return nome;
+	}
 
-	public void setRua(String rua) {
-		if (this.rua.isEmpty())
-			System.out.println("Nome de rua invalido");
+	public void setNome(String nome) {
+		if (nome.isEmpty())
+			this.nome = "indefinido";
 		else
-			this.rua = rua;
+			this.nome = nome;
+
 	}
 
-	public void setBairro(String bairro) {
-		if (this.bairro.isEmpty())
-			System.out.println("Nome de rua invalido");
-		else
-			this.bairro = bairro;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setNumero(Integer numero) {
-		if (numero == null)
-			System.out.println("Nome de rua invalido");
-		else
-			this.numero = numero;
+	public void setCodigo(String codigo) {
+		 if (codigo.isEmpty())
+	            this.codigo = "indefinido";
+	        else
+	            this.codigo = codigo;
 	}
 
-	public String getRua() {
-		return this.rua;
-	}
-
-	public String getBairro() {
-		return this.bairro;
-	}
-
-	public Integer getNumero() {
-		return this.numero;
-	}
-
-	void cadastrar() {
-		// cadastrar no banco de dados
-	}
-
-	void deletar() {
-		// deletar no banco de dados
-	}
-
-	void editar() {
-		// editar no banco de dados
-	}
 }
