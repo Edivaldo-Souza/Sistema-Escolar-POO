@@ -1,7 +1,4 @@
 package entity;
-
-import ;
-
 class Professor {
 
 	private String nome;
