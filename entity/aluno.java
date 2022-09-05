@@ -36,4 +36,8 @@ class Aluno {
 
     public String getMatricula() {return this.matricula;}
 
+    public Endereco getEndereco() {return this.endereco;}
+
+    public ResultadoTurma[] getHistorico() {return this.historico;}
+
 }
