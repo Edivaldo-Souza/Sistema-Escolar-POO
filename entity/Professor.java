@@ -13,7 +13,7 @@ class Professor {
 	}
 
 	public void setNome(String nome) {
-		if (this.nome.isEmpty())
+		if (nome.isEmpty())
 			System.out.println("Nome invalido");
 		else
 			this.nome = nome;
@@ -26,7 +26,7 @@ class Professor {
 	}
 
 	public void setCpf(String cpf) {
-		if (this.cpf.isEmpty())
+		if (cpf.isEmpty())
 			System.out.println("Nome invalido");
 		else
 			this.cpf = cpf;

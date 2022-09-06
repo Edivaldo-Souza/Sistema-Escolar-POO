@@ -19,7 +19,7 @@ public class ResultadoTurma {
 
 	public void setNotas(float[] notas) {
 		for (int i = 0; i < notas.length; i++) {
-			if (notas[i] < 0) {
+			if (notas[i] < 0 || notas[i] > 10) {
 				this.notas[i] = 0;
 
 			} else {
