@@ -1,4 +1,4 @@
-package entity;
+package model.entity;
 class Professor {
 
 	private String nome;

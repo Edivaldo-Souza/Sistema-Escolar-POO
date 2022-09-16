@@ -1,4 +1,4 @@
-package entity;
+package model.entity;
 
 class Endereco {
     private String rua;

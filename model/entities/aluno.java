@@ -1,4 +1,4 @@
-package entity;
+package mode.entity;
 
 class Aluno {
     private String nome;
