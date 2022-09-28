@@ -1,4 +1,4 @@
-package entity;
+package model.entities;
 
 public class Disciplina {
 	private String nome;
