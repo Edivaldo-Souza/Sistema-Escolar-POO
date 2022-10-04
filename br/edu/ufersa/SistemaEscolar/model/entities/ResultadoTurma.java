@@ -1,4 +1,4 @@
-package model.entity;
+package br.edu.ufersa.SistemaEscolar.model.entities;
 
 public class ResultadoTurma {
 	private Disciplina disciplina;

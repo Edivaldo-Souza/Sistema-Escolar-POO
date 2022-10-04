@@ -1,4 +1,4 @@
-package model.entities;
+package br.edu.ufersa.SistemaEscolar.model.entities;
 
 public class Disciplina {
 	private String nome;

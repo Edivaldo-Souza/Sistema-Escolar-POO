@@ -1,4 +1,5 @@
-package model.entity;
+package br.edu.ufersa.SistemaEscolar.model.entities;
+import java.util.List;
 class Turma {
   private int id;
   private Disciplina disciplina;

@@ -1,4 +1,4 @@
-package model.entity;
+package br.edu.ufersa.SistemaEscolar.model.entities;
 class Professor {
 
 	private String nome;
