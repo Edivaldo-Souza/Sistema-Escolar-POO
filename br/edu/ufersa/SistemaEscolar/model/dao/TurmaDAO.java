@@ -31,32 +31,57 @@ public class TurmaDAO extends StandardDAO<Turma> {
     }
   }
 
-  public void removeByDisciplina(Turma vo) {
+  public void removeBySpecificField(Turma vo, String field){
     connection = getConnection();
-    String sql = "delete from Turma where codigoDisciplina = ?";
-
+    String sql = "delete from Turma where " + field + " = ?";
+    
     try {
-      PreparedStatement ptst = connection.prepareStatement(sql);
-      ptst.setString(1, vo.getDisciplina().getCodigo());
-      ptst.execute();
+      PreparedStatement pst = connection.prepareStatement(sql);
+      switch (field){
+        case "id":
+          sql = "delete from Turma where id = ?";
+          pst = connection.prepareStatement(sql);
+          pst.setInt(1, vo.getId());          
+          break;
+        case "codigoDisciplina":
+          sql = "delete from Turma where codigoDisciplina = ?";
+          pst = connection.prepareStatement(sql);
+          pst.setString(1, vo.getDisciplina().getCodigo());
+          break;
+        case "codigoProfessor":
+          sql = "delete from Turma where codigoProfessor = ?";
+          pst = connection.prepareStatement(sql);
+          pst.setString(1, vo.getProfessor().getCpf());
+          break;
+        case "horario":
+          sql = "delete from Turma where horario = ?";
+          pst = connection.prepareStatement(sql);
+          pst.setString(1, vo.getHorario());
+          break;
+        case "local":
+          sql = "delete from Turma where local = ?";
+          pst = connection.prepareStatement(sql);
+          pst.setString(1, vo.getLocal());
+          break;
+        case "status":
+          sql = "delete from Turma where status = ?";
+          pst = connection.prepareStatement(sql);
+          pst.setBoolean(1, vo.isStatus());
+          break; 
+          default:
+            break;
+                   
+      }
+      pst.execute();
 
     } catch (SQLException e) {
-      // TODO: handle exception
       e.printStackTrace();
     }
-
   }
+ 
 
-  public void removeByProfessor(Turma vo) {
-    connection = getConnection();
-    String sql = "delete from Turma where codigoProfessor = ?";
-
-    try {
-      PreparedStatement ptst = connection.prepareStatement(sql);
-      ptst.setString(1, vo.getProfessor().getCpf());
-      ptst.execute();
-
-    } catch (SQLException e) {
+  
+  
 
   public List<Turma> listar() {
     connection = getConnection();
@@ -87,7 +112,7 @@ public class TurmaDAO extends StandardDAO<Turma> {
     return turma;
   }
 
-  public void Edit(Turma vo) {
+  public void edit(Turma vo) {
     connection = getConnection();
     String sql = "update Turma set horario = ?, local = ?, status = ?, codigoDisciplina = ?, codigoProfessor = ? where id = ?";
     try {
@@ -108,9 +133,39 @@ public class TurmaDAO extends StandardDAO<Turma> {
 
   @Override
   public ResultSet findBySpecifiedField(Turma vo, String field) {
-    String sql = "SELECT * FROM Turma WHERE" + field +"=? ;";
-    switch (field){
-      
+    String sql = "SELECT * FROM Turma WHERE" + field + "=? ;";
+
+    try {
+      PreparedStatement pst = connection.prepareStatement(sql);
+      switch (field) {
+        case "codigoDisciplina":
+          sql = "SELECT * FROM Turma WHERE codigoDisciplina = ? ;";
+          break;
+
+        case "codigoProfessor":
+          sql = "SELECT * FROM Turma WHERE codigoProfessor = ? ;";
+          break;
+        case "horario":
+          sql = "SELECT * FROM Turma WHERE horario = ? ;";
+          break;
+        case "local":
+          sql = "SELECT * FROM Turma WHERE local = ? ;";
+          break;
+        case "status":
+          sql = "SELECT * FROM Turma WHERE status = ? ;";
+          break;
+        case "id":
+          sql = "SELECT * FROM Turma WHERE id = ? ;";
+          break;
+        default:
+          break;
+      }
+      ResultSet rs = pst.executeQuery();
+      return rs;
+    } catch (SQLException e) {
+      // TODO: handle exception
+      e.printStackTrace();
+      return null;
     }
   }
 }
