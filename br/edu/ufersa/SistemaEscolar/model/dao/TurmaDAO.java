@@ -31,17 +31,17 @@ public class TurmaDAO extends StandardDAO<Turma> {
     }
   }
 
-  public void removeBySpecificField(Turma vo, String field){
+  public void removeBySpecificField(Turma vo, String field) {
     connection = getConnection();
     String sql = "delete from Turma where " + field + " = ?";
-    
+
     try {
       PreparedStatement pst = connection.prepareStatement(sql);
-      switch (field){
+      switch (field) {
         case "id":
           sql = "delete from Turma where id = ?";
           pst = connection.prepareStatement(sql);
-          pst.setInt(1, vo.getId());          
+          pst.setInt(1, vo.getId());
           break;
         case "codigoDisciplina":
           sql = "delete from Turma where codigoDisciplina = ?";
@@ -67,10 +67,10 @@ public class TurmaDAO extends StandardDAO<Turma> {
           sql = "delete from Turma where status = ?";
           pst = connection.prepareStatement(sql);
           pst.setBoolean(1, vo.isStatus());
-          break; 
-          default:
-            break;
-                   
+          break;
+        default:
+          break;
+
       }
       pst.execute();
 
@@ -78,12 +78,8 @@ public class TurmaDAO extends StandardDAO<Turma> {
       e.printStackTrace();
     }
   }
- 
 
-  
-  
-
-  public List<Turma> listar() {
+  /*public List<Turma> listar() {
     connection = getConnection();
     String sql = "select * from Turma,Disciplina,Professor where codigoDisciplina = codigo and cpf = codigoProfessor";
     Statement st;
@@ -100,7 +96,7 @@ public class TurmaDAO extends StandardDAO<Turma> {
         vo.getDisciplina().setCodigo(rs.getString("codigoDisciplina"));
         vo.getDisciplina().setNome(rs.getString("nome"));
         vo.getProfessor().setCpf(rs.getString("codigoProfessor"));
-        vo.getProfessor().setNome(rs.getString("nome"));
+        vo.getProfessor().setNome(rs.getString("nome"));        
         vo.setHorario(rs.getString("horario"));
         vo.setLocal(rs.getString("local"));
         vo.setStatus(rs.getBoolean("status"));
@@ -110,7 +106,7 @@ public class TurmaDAO extends StandardDAO<Turma> {
       e.printStackTrace();
     }
     return turma;
-  }
+  }*/
 
   public void edit(Turma vo) {
     connection = getConnection();
