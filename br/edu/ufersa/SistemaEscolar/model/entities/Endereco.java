@@ -1,11 +1,12 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
 
-class Endereco {
+public class Endereco {
     private String rua;
     private int numero;
     private String bairro;
-
-    Endereco(String rua, String bairro, int numero) {
+    
+    public Endereco() {}
+    public Endereco(String rua, String bairro, int numero) {
         setRua(rua);
         setBairro(bairro);
         setNumero(numero);

@@ -11,7 +11,7 @@ public class StandardDAO<type> implements InterfaceDAO<type> {
 	synchronized public Connection getConnection() {
 		if(connection == null) {
 			try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost/bd_sisescolar","root","escola123");
 			} 
 			catch(SQLException e) {
 				e.printStackTrace();
