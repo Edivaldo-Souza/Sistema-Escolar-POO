@@ -47,9 +47,20 @@ public class TurmaDAO extends StandardDAO<Turma> {
 
   }
 
+  public void removeByProfessor(Turma vo) {
+    connection = getConnection();
+    String sql = "delete from Turma where codigoProfessor = ?";
+
+    try {
+      PreparedStatement ptst = connection.prepareStatement(sql);
+      ptst.setString(1, vo.getProfessor().getCpf());
+      ptst.execute();
+
+    } catch (SQLException e) {
+
   public List<Turma> listar() {
     connection = getConnection();
-    String sql = "select * from Turma";
+    String sql = "select * from Turma,Disciplina,Professor where codigoDisciplina = codigo and cpf = codigoProfessor";
     Statement st;
     ResultSet rs;
     List<Turma> turma = new ArrayList<Turma>();
@@ -59,12 +70,15 @@ public class TurmaDAO extends StandardDAO<Turma> {
       rs = st.executeQuery(sql);
 
       while (rs.next()) {
-        Turma vo = new Turma();
+        vo = new Turma();
         vo.setId(rs.getInt("id"));
+        vo.getDisciplina().setCodigo(rs.getString("codigoDisciplina"));
+        vo.getDisciplina().setNome(rs.getString("nome"));
+        vo.getProfessor().setCpf(rs.getString("codigoProfessor"));
+        vo.getProfessor().setNome(rs.getString("nome"));
         vo.setHorario(rs.getString("horario"));
         vo.setLocal(rs.getString("local"));
         vo.setStatus(rs.getBoolean("status"));
-
         turma.add(vo);
       }
     } catch (SQLException e) {
@@ -90,5 +104,10 @@ public class TurmaDAO extends StandardDAO<Turma> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public ResultSet findBySpecifiedField(Turma vo, String field) {
+
   }
 }
