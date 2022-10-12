@@ -108,6 +108,9 @@ public class TurmaDAO extends StandardDAO<Turma> {
 
   @Override
   public ResultSet findBySpecifiedField(Turma vo, String field) {
-
+    String sql = "SELECT * FROM Turma WHERE" + field +"=? ;";
+    switch (field){
+      
+    }
   }
 }
