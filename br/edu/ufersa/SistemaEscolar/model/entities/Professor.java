@@ -1,5 +1,6 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
-class Professor {
+
+public class Professor {
 
 	private String nome;
 	private Endereco endereco;

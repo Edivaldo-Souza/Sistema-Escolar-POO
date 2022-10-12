@@ -1,7 +1,10 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
+
 import java.util.List;
-class Turma {
+
+public class Turma {
   private int id;
+  private Professor professor;
   private Disciplina disciplina;
   private String horario;
   private Aluno[] alunos;
@@ -17,6 +20,18 @@ class Turma {
       System.out.println("ID inválido.");
     } else
       this.id = id;
+  }
+
+  public Professor getProfessor() {
+    return professor;
+  }
+
+  public void setProfessor(Professor professor) {
+    if (professor == null) {
+      System.out.println("A turma precisa de um professor.");
+    } else
+      this.professor = professor;
+
   }
 
   public Disciplina getDisciplina() {

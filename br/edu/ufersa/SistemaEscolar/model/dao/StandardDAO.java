@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StandardDAO<type> implements InterfaceDAO<type> {
-	private Connection connection;
+	 Connection connection;
 	
 	synchronized public Connection getConnection() {
 		if(connection == null) {
