@@ -6,8 +6,10 @@ public class Professor {
 	private Endereco endereco;
 	private String cpf;
 	private Turma[] turmas;
-
-	Professor(String nome, String cpf) {
+	
+	public Professor(){}
+	
+	public Professor(String nome, String cpf) {
 		this.setCpf(cpf);
 		this.setEndereco(endereco);
 		this.setNome(nome);
