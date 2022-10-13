@@ -1,19 +1,35 @@
 package br.edu.ufersa.SistemaEscolar.model.dao;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class StandardDAO<type> implements InterfaceDAO<type> {
 	protected Connection connection;
+	private static Properties getProperties() throws IOException{
+		Properties prop = new Properties();
+		String configPath =  System.getProperty("user.dir") + "/src/database.properties";
+		InputStream input = new FileInputStream(configPath);
+		prop.load(input);
+		return prop;	
+	}
 	
 	synchronized public Connection getConnection() {
 		if(connection == null) {
 			try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/bd_sisescolar","root","escola123");
+			Properties prop = getProperties();
+			final String url = prop.getProperty("db.url"); 
+			final String user = prop.getProperty("db.user"); 
+			final String pass = prop.getProperty("db.pass"); 
+
+			connection = DriverManager.getConnection(url,user,pass);
 			} 
-			catch(SQLException e) {
+			catch(SQLException | IOException e) {
 				e.printStackTrace();
 			}
 			return connection;
