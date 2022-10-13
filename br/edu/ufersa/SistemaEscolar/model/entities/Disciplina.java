@@ -3,6 +3,11 @@ package br.edu.ufersa.SistemaEscolar.model.entities;
 public class Disciplina {
 	private String nome;
 	private String codigo;
+	
+	public Disciplina(String nome,String codigo){
+		this.setCodigo(codigo);
+		this.setNome(nome);
+	}
 
 	public String getNome() {
 		return nome;
