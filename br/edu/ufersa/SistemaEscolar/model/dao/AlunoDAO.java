@@ -84,6 +84,7 @@ public class AlunoDAO extends StandardDAO<Aluno>{
 		}
 		return true;
 	}
+ 
 	
 	public ResultSet findAll() {
 		String sql = "SELECT * FROM tabela_aluno;";

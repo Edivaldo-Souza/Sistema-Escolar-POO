@@ -4,14 +4,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
+import java.util.Scanner;
 
+import br.edu.ufersa.SistemaEscolar.model.entities.Aluno;
 import br.edu.ufersa.SistemaEscolar.model.entities.Professor;
+import br.edu.ufersa.SistemaEscolar.model.entities.Turma;
+import br.edu.ufersa.SistemaEscolar.model.entities.ResultadoTurma;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
+import br.edu.ufersa.SistemaEscolar.model.dao.TurmaDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.ProfessorDAO;
+import br.edu.ufersa.SistemaEscolar.model.dao.ResultadoTurmaDAO;
 import br.edu.ufersa.SistemaEscolar.model.entities.Endereco;
 
 public class ProfessorBO implements InterfaceServices<Professor>{
 	StandardDAO<Professor> dao = new ProfessorDAO();
+	StandardDAO<Turma> daoTM = new TurmaDAO();
 	
 	@Override
 	public boolean insert(Professor e) {
@@ -74,22 +82,33 @@ public class ProfessorBO implements InterfaceServices<Professor>{
 				professores.add(prof);
 			}
 			return professores;
-		}catch(SQLException sqle) {
+		}catch(SQLException sqle) { 
 			sqle.printStackTrace();
 			return null;
 		}
 	}
 	
-	public static void main(String args[]) {
-		Professor pr = new Professor("Júlio Mesquita","222.222.444-12");
-		Endereco end = new Endereco("rua Asas","Bairro terra",23);
-		pr.setEndereco(end);
-		ProfessorBO bo = new ProfessorBO();
-		bo.insert(pr);
-		List<Professor> list = bo.listAll();
-		for(Professor e:list) {
-			System.out.println(e.getNome());
+	/*public void editarNotas(Professor e,int index) {
+		Turma turmaSelecionada = e.getTurmas().get(index);
+		List<Aluno> alunosDaTurma = turmaSelecionada.getAlunos();
+		
+		Iterator<Aluno> iterator_A = alunosDaTurma.iterator();
+		
+		Aluno aluno;
+		ResultadoTurma historico;
+		
+		Scanner leitor = new Scanner(System.in);
+		while(iterator_A.hasNext()) {
+			aluno = iterator_A.next();
+			historico = aluno.getHistorico(turmaSelecionada.getDisciplina().getCodigo());
+			
+			historico.setFrequencia(leitor.nextFloat());
+			for(int i = 0; i<historico.getNotas().length; i++) {
+				
+			}
+			
 		}
-	}
-
+		//ResultSet rs = daoTM.findBySpecifiedField(turma, "id");
+		
+	}*/
 }

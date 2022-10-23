@@ -10,7 +10,7 @@ public class ResultadoTurma {
 	}
 
 	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
+		if(disciplina != null) {this.disciplina = disciplina;}
 	}
 
 	public float[] getNotas() {

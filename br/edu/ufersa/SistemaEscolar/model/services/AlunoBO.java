@@ -78,5 +78,10 @@ public class AlunoBO implements InterfaceServices<Aluno>{
 			return null;
 		}
 	}
+	
+	public boolean insertResultado(Aluno e) {
+		
+		return true;
+	}
 
 }

@@ -1,13 +1,14 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Turma {
   private int id;
   private Professor professor;
   private Disciplina disciplina;
   private String horario;
-  private Aluno[] alunos;
+  private List<Aluno> alunos = new ArrayList<Aluno>();
   private String local;
   private boolean status;
 
@@ -58,15 +59,15 @@ public class Turma {
       this.horario = horario;
   }
 
-  public Aluno[] getAlunos() {
+  public List<Aluno> getAlunos() {
     return alunos;
   }
 
-  public void setAlunos(Aluno[] alunos) {
+  public void setAlunos(Aluno aluno) {
     if (alunos == null) {
       System.out.println("A turma precisa de alunos");
     } else
-      this.alunos = alunos;
+      alunos.add(aluno);
   }
 
   public String getLocal() {
@@ -88,12 +89,5 @@ public class Turma {
     this.status = status;
   }
 
-  public void cadastrar() {
-
-  }
-
-  public void editar() {
-
-  }
 
 }

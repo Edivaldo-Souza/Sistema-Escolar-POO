@@ -3,20 +3,19 @@ package br.edu.ufersa.SistemaEscolar.model.services;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.edu.ufersa.SistemaEscolar.model.entities.Aluno;
+import br.edu.ufersa.SistemaEscolar.model.entities.ResultadoTurma;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
-import br.edu.ufersa.SistemaEscolar.model.dao.AlunoDAO;
+import br.edu.ufersa.SistemaEscolar.model.dao.ResultadoTurmaDAO;
+
 import java.util.List;
 import java.util.ArrayList;
 
-public class ResultadoTurmaBO {
-
-}public class AlunoBO implements InterfaceServices<Aluno>{
-	StandardDAO<Aluno> dao = new AlunoDAO();
+public class ResultadoTurmaBO implements InterfaceServices<ResultadoTurma>{
+	StandardDAO<ResultadoTurma> dao = new ResultadoTurmaDAO();
 	
 	@Override
-	public boolean insert(Aluno e) {
-		ResultSet rs = dao.findBySpecifiedField(e, "matricula");
+	public boolean insert(ResultadoTurma e) {
+		ResultSet rs = dao.findBySpecifiedField(e, "mat_aluno");
 		try {
 			if(rs == null || !(rs.next())) {
 				if(dao.insert(e)) return true;
@@ -31,8 +30,8 @@ public class ResultadoTurmaBO {
 	}
 	
 	@Override
-	public boolean delete(Aluno e) {
-		ResultSet rs = dao.findBySpecifiedField(e, "matricula");
+	public boolean delete(ResultadoTurma e) {
+		ResultSet rs = dao.findBySpecifiedField(e, "mat_aluno");
 		try {
 			if(rs == null || !(rs.next())) {
 				if(dao.delete(e)) return true;
@@ -47,7 +46,7 @@ public class ResultadoTurmaBO {
 	}
 	
 	@Override
-	public boolean alter(Aluno e) {
+	public boolean alter(ResultadoTurma e) {
 		ResultSet rs = dao.findBySpecifiedField(e, "matricula");
 		try {
 			if(rs == null || !(rs.next())) {
@@ -63,22 +62,8 @@ public class ResultadoTurmaBO {
 	}
 	
 	@Override
-	public List<Aluno> listAll(){
-		List<Aluno> alunos = new ArrayList<Aluno>();
-		ResultSet rs = dao.findAll();
-		try {
-			while(rs.next()) {
-				Aluno aluno = new Aluno();
-				aluno.setMatricula(rs.getString("matricula"));
-				aluno.setNome(rs.getString("nome"));
-				
-				alunos.add(aluno);
-			}
-			return alunos;
-		}catch(SQLException sqle) {
-			sqle.printStackTrace();
-			return null;
-		}
+	public List<ResultadoTurma> listAll(){
+		return null;
 	}
 
 }

@@ -8,8 +8,8 @@ import br.edu.ufersa.SistemaEscolar.model.entities.Aluno;
 import br.edu.ufersa.SistemaEscolar.model.entities.ResultadoTurma;
 
 public class ResultadoTurmaDAO extends StandardDAO<ResultadoTurma> {
-	@Override
-	public boolean insert(ResultadoTurma entity) {
+	
+	public boolean insert(ResultadoTurma entity, Aluno entity_A) {
 		String sql = "insert into tabela_resultadoTurma (cod_disciplina, nota1, nota2, nota3, media, frequencia, mat_aluno) values (?,?,?,?,?,?,?);";
 		
 		try {
@@ -18,9 +18,9 @@ public class ResultadoTurmaDAO extends StandardDAO<ResultadoTurma> {
 			ps.setFloat(2, entity.getNotas()[0]);
 			ps.setFloat(3, entity.getNotas()[1]);
 			ps.setFloat(4, entity.getNotas()[2]);
-			ps.setFloat(5, entity.getMedia());
+			ps.setFloat(5, entity.getNotas()[3]);
 			ps.setFloat(6, entity.getFrequencia());
-			ps.setString(7, entity.getAluno().getMatricula());
+			ps.setString(7, entity_A.getMatricula());
 			ps.execute();
 		}
 		catch(SQLException sqle){
@@ -30,12 +30,11 @@ public class ResultadoTurmaDAO extends StandardDAO<ResultadoTurma> {
 		return true;
 	}
 
-	@Override
-	public boolean delete(ResultadoTurma entity) {
+	public boolean delete(ResultadoTurma entity, Aluno entity_A) {
 		String sql = "delete from tabela_resultadoTurma where mat_aluno=?;";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setString(1, entity.getAluno().getMatricula());
+			ps.setString(1, entity_A.getMatricula());
 			ps.execute();
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();
@@ -44,8 +43,8 @@ public class ResultadoTurmaDAO extends StandardDAO<ResultadoTurma> {
 		return true;
 	}
 
-	@Override
-	public boolean alter(ResultadoTurma entity) {
+
+	public boolean alter(ResultadoTurma entity, Aluno entity_A) {
 		String sql = "update tabela_resultadoTurma set cod_disciplina=?, nota1=?, nota2=?, nota3=?, media=?, frequencia=? where mat_aluno=?;";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -53,9 +52,9 @@ public class ResultadoTurmaDAO extends StandardDAO<ResultadoTurma> {
 			ps.setFloat(2, entity.getNotas()[0]);
 			ps.setFloat(3, entity.getNotas()[1]);
 			ps.setFloat(4, entity.getNotas()[2]);
-			ps.setFloat(5, entity.getMedia());
+			ps.setFloat(5, entity.getNotas()[3]);
 			ps.setFloat(6, entity.getFrequencia());
-			ps.setString(7, entity.getAluno().getMatricula());
+			ps.setString(7, entity_A.getMatricula());
 			ps.execute();
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();

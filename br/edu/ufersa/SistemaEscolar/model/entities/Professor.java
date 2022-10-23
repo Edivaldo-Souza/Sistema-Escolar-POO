@@ -1,11 +1,14 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Professor {
 
 	private String nome;
 	private Endereco endereco;
 	private String cpf;
-	private Turma[] turmas;
+	private List<Turma> turmas = new ArrayList<Turma>();
 	
 	public Professor(){}
 	
@@ -48,21 +51,8 @@ public class Professor {
 		return this.endereco;
 	}
 
-	public Turma[] getTurmas() {
+	public List<Turma> getTurmas() {
 		return this.turmas;
-	}
-
-	void cadastrar(Professor novo) {
-		// Inserir no banco de dados
-	}
-
-	void deletar() {
-		// Deletar no banco de dados
-	}
-
-	void editar() {
-		// Editar no banco de dados
-
 	}
 
 }

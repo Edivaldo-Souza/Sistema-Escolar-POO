@@ -1,6 +1,6 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
-import java.util.List;
 
+import java.util.List;
 import java.util.Iterator;
 
 public class Aluno extends Afiliado{
@@ -22,12 +22,27 @@ public class Aluno extends Afiliado{
     public void setHistorico(ResultadoTurma result){
         Iterator<ResultadoTurma> it = historico.iterator();
         for(int i = 0; i<historico.size(); i++) {
-        	if(it.next() == null) historico.add(i, result); 
+        	if(it.next().getDisciplina().getCodigo() ==  result.getDisciplina().getCodigo()
+        	   || it.next() == null) {
+        		historico.add(i,result);
+        	}
         }
     }
 
     public String getMatricula() {return this.matricula;}
 
     public List<ResultadoTurma> getHistorico() {return this.historico;}
+    
+    public ResultadoTurma getHistorico(String cod_disciplina) {
+    	Iterator<ResultadoTurma> iterator_R = historico.iterator();
+    	
+    	while(iterator_R.hasNext()) {
+    		ResultadoTurma resultado = iterator_R.next();
+    		if(resultado.getDisciplina().getCodigo() == cod_disciplina){
+    			return resultado;
+    		}
+    	}
+    	return null;
+    }
 
 }
