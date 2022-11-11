@@ -3,6 +3,7 @@ package br.edu.ufersa.SistemaEscolar.model.services;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.model.entities.Aluno;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.AlunoDAO;
@@ -60,13 +61,13 @@ public class AlunoBO implements InterfaceServices<Aluno>{
 		}
 	}
 	
-	@Override
-	public List<Aluno> listAll(){
-		List<Aluno> alunos = new ArrayList<Aluno>();
+	
+	public List<AlunoDTO> listAll(){
+		List<AlunoDTO> alunos = new ArrayList<AlunoDTO>();
 		ResultSet rs = dao.findAll();
 		try {
 			while(rs.next()) {
-				Aluno aluno = new Aluno();
+				AlunoDTO aluno = new AlunoDTO();
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setNome(rs.getString("nome"));
 				

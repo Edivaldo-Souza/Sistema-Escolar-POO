@@ -61,7 +61,7 @@ public class ResultadoTurmaBO implements InterfaceServices<ResultadoTurma>{
 		}
 	}
 	
-	@Override
+	
 	public List<ResultadoTurma> listAll(){
 		return null;
 	}

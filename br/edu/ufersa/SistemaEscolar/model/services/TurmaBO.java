@@ -7,26 +7,45 @@ import java.util.List;
 
 import br.edu.ufersa.SistemaEscolar.model.dao.TurmaDAO;
 import br.edu.ufersa.SistemaEscolar.model.entities.Turma;
+import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 
 public class TurmaBO {
   StandardDAO<Turma> dao = new TurmaDAO();
 
-  public boolean insert(Turma vo) {
-    ResultSet rs = dao.findBySpecifiedField(vo, "id");
-    try {
-      if (rs == null || !(rs.next())) {
-        if (dao.insert(vo) == true) {
-          return true;
-        } else
-          return false;
-      } else
-        return false;
-    } catch (SQLException e) {
-      // TODO: handle exception
-      e.printStackTrace();
-      return false;
-    }
+  public void insert(TurmaDTO vo) {
+	Turma turma = new Turma();
+	turma.converter(vo);
+    dao.insert(turma); 
+  }
+  
+  public void insertTabelaAlunoTurma(String matricula,int id) {
+	  dao.inserirTabelaAlunoTurma(matricula,id);
+  }
+  
+  public TurmaDTO ultimaTurmaInserida() {
+	  TurmaDTO t = new TurmaDTO();
+	  ResultSet rs = dao.findLastTurma();
+	  try {
+		while(rs.next()) {
+			  t.setId(rs.getInt("id"));
+			  t.setCodDisciplina(rs.getString("codigoDisciplina"));
+			  t.setCodProfessor(rs.getString("codigoProfessor"));
+			  t.setHorario(rs.getString("horario"));
+			  t.setLocal(rs.getString("local"));
+			  t.setStatus(rs.getBoolean("status"));
+			  
+		  }
+		return t;
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return null;
+	}
+  }
+  
+  public void deletarTabelaAlunoTurma(int id) {
+	  dao.deletarTabelaAlunoTurma(id);
   }
 
   public List<Turma> listar() {
@@ -69,21 +88,10 @@ public class TurmaBO {
     }
   }
 
-  public boolean alter(Turma vo) {
-    ResultSet rs = dao.findBySpecifiedField(vo, "id");
-    try {
-      if (rs != null && rs.next()) {
-        if (dao.alter(vo) == true) {
-          return true;
-        } else
-          return false;
-      } else
-        return false;
-    } catch (SQLException e) {
-      // TODO: handle exception
-      e.printStackTrace();
-      return false;
-    }
+  public boolean alter(TurmaDTO vo) {
+	Turma turma = new Turma();
+	turma.converter(vo);
+    dao.alter(turma);
+    return true;
   }
-
 }

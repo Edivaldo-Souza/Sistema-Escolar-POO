@@ -1,6 +1,9 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
 
 import java.util.List;
+
+import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
+
 import java.util.ArrayList;
 
 public class Turma {
@@ -87,6 +90,21 @@ public class Turma {
 
   public void setStatus(boolean status) {
     this.status = status;
+  }
+  
+  public void converter(TurmaDTO dto) {
+	  setId(dto.getId());
+	  Professor p = new Professor();
+	  p.setCpf(dto.getCodProfessor());
+	  
+	  Disciplina d = new Disciplina();
+	  d.setCodigo(dto.getCodDisciplina());
+	  
+	  setProfessor(p);
+	  setDisciplina(d);
+	  setHorario(dto.getHorario());
+	  setLocal(dto.getLocal());
+	  setStatus(dto.isStatus());
   }
 
 

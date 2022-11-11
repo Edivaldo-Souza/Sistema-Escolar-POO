@@ -20,7 +20,7 @@ public class ProfessorDAO extends StandardDAO<Professor>{
 			return false;
 		}
 		
-		sql = "insert into tabela_endereco_professoe (rua,bairro,numero,cpf_prof) values (?,?,?,?);";
+		sql = "insert into tabela_endereco_professor (rua,bairro,numero,cpf_prof) values (?,?,?,?);";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, e.getEndereco().getRua());

@@ -1,6 +1,12 @@
 create database bd_sisescolar;
 
 use bd_sisescolar;
+
+create table tabela_aluno_turma(
+	mat_aluno varchar(15) references tabela_aluno(matricula),
+    id_turma int references turma(id)
+);
+
 create table tabela_aluno(
 	matricula varchar(15) primary key,
     nome varchar(30)
@@ -31,7 +37,7 @@ create table tabela_disciplina(
 );
 
 create table turma(
-	id int primary key,
+	id int unsigned auto_increment primary key,
     codigoDisciplina varchar(30) references tabela_disciplina(codigo),
     codigoProfessor varchar(15) references tabela_professor(cpf),
     horario varchar(30),
@@ -46,5 +52,6 @@ create table tabela_resultadoTurma(
     nota3 float,
     media float,
     frequencia float,
+    cod_turma int references turma(id),
     mat_aluno varchar(15) references tabela_aluno(matricula)
 );

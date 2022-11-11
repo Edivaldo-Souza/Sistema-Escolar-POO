@@ -9,6 +9,10 @@ public class Disciplina {
 		this.setNome(nome);
 	}
 
+	public Disciplina() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNome() {
 		return nome;
 	}

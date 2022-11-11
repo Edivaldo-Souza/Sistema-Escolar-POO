@@ -11,31 +11,22 @@ import java.util.Properties;
 
 public class StandardDAO<type> implements InterfaceDAO<type> {
 	protected Connection connection;
-	private static Properties getProperties() throws IOException{
-		Properties prop = new Properties();
-		String configPath =  System.getProperty("user.dir") + "/src/database.properties";
-		InputStream input = new FileInputStream(configPath);
-		prop.load(input);
-		return prop;	
-	}
 	
 	synchronized public Connection getConnection() {
 		if(connection == null) {
 			try {
-			Properties prop = getProperties();
-			final String url = prop.getProperty("db.url"); 
-			final String user = prop.getProperty("db.user"); 
-			final String pass = prop.getProperty("db.pass"); 
-
-			connection = DriverManager.getConnection(url,user,pass);
+				connection = DriverManager.getConnection("jdbc:mysql://localhost/bd_sisescolar","root","escola123");
 			} 
-			catch(SQLException | IOException e) {
+			catch (SQLException e) {
 				e.printStackTrace();
 			}
 			return connection;
 		}
 		else return connection;
 	}
+	
+	public void inserirTabelaAlunoTurma(String matricula, int id) {}
+	public void deletarTabelaAlunoTurma(int id) {}
 
 	@Override
 	public boolean insert(type entity) {
@@ -48,7 +39,6 @@ public class StandardDAO<type> implements InterfaceDAO<type> {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 	@Override
 	public boolean alter(type entity) {
 		// TODO Auto-generated method stub
@@ -70,6 +60,10 @@ public class StandardDAO<type> implements InterfaceDAO<type> {
 	@Override
 	public ResultSet findBySpecifiedField(type entity, String field) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public ResultSet findLastTurma() {
 		return null;
 	}
 }
