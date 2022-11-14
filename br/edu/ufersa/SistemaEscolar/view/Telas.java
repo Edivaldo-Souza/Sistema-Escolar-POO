@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_AController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_BController;
+import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
 import br.edu.ufersa.SistemaEscolar.model.entities.Turma;
 
@@ -74,4 +75,19 @@ public class Telas extends Application{
 		}
 	}
 	
+	public static void telaDadosAluno () {
+		try {
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DadosAluno.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Dados Aluno");
+			mainStage.show();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
 }
+
