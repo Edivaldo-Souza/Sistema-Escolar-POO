@@ -4,14 +4,15 @@ package br.edu.ufersa.SistemaEscolar.api.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
-import java.awt.Label;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
-import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
+
 import br.edu.ufersa.SistemaEscolar.model.services.AlunoBO;
 import br.edu.ufersa.SistemaEscolar.model.services.ResultadoTurmaBO;
 
