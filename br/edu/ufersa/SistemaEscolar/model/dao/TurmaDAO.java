@@ -165,4 +165,16 @@ public class TurmaDAO extends StandardDAO<Turma> {
       return null;
     }
   }
+  @Override
+  public ResultSet findAll() {
+	  String sql = "SELECT * FROM turma;";
+		try {
+			PreparedStatement pst = getConnection().prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			return rs;
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
+  }
 }

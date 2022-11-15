@@ -1,5 +1,7 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
 
+import br.edu.ufersa.SistemaEscolar.api.dto.DisciplinaDTO;
+
 public class Disciplina {
 	private String nome;
 	private String codigo;
@@ -36,16 +38,8 @@ public class Disciplina {
 	            this.codigo = codigo;
 	}
 
-	void cadastrar(Disciplina novo) {
-		// Inserir no banco de dados
-	}
-
-	void deletar() {
-		// Deletar no banco de dados
-	}
-
-	void editar() {
-		// Editar no banco de dados
-
+	public void converter(DisciplinaDTO e){
+		setNome(e.getNome());
+		setCodigo(e.getCodigo());
 	}
 }

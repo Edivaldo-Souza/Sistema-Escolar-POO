@@ -1,6 +1,9 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
 
 import java.util.List;
+
+import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
+
 import java.util.Iterator;
 
 public class Aluno extends Afiliado{
@@ -43,6 +46,18 @@ public class Aluno extends Afiliado{
     		}
     	}
     	return null;
+    }
+    
+    public void converter(AlunoDTO e) {
+    	Endereco end = new Endereco();
+    	setNome(e.getNome());
+    	setMatricula(e.getMatricula());
+    	end.setRua(e.getRua());
+    	end.setBairro(e.getBairro());
+    	end.setNumero(e.getNumeroEndereco());
+    	setEndereco(end);
+    	setUsuario(e.getUsuario());
+    	setSenha(e.getSenha());
     }
 
 }

@@ -1,12 +1,14 @@
 package br.edu.ufersa.SistemaEscolar.model.entities;
 
 import java.util.List;
+
+import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
+
 import java.util.ArrayList;
 
-public class Professor {
+public class Professor extends Afiliado{
 
 	private String nome;
-	private Endereco endereco;
 	private String cpf;
 	private List<Turma> turmas = new ArrayList<Turma>();
 	
@@ -14,7 +16,6 @@ public class Professor {
 	
 	public Professor(String nome, String cpf) {
 		this.setCpf(cpf);
-		this.setEndereco(endereco);
 		this.setNome(nome);
 	}
 
@@ -23,11 +24,6 @@ public class Professor {
 			System.out.println("Nome invalido");
 		else
 			this.nome = nome;
-
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
 
 	}
 
@@ -47,12 +43,21 @@ public class Professor {
 		return this.nome;
 	}
 
-	public Endereco getEndereco() {
-		return this.endereco;
-	}
-
 	public List<Turma> getTurmas() {
 		return this.turmas;
+	}
+	
+	public void converter(ProfessorDTO e) {
+		Endereco end = new Endereco();
+		setNome(e.getNome());
+		setCpf(e.getCpf());
+		setUsuario(e.getUsuario());
+		setSenha(e.getSenha());
+		end.setRua(e.getRua());
+		end.setBairro(e.getBairro());
+		end.setNumero(e.getNumeroEndereco());
+		setEndereco(end);
+		
 	}
 
 }

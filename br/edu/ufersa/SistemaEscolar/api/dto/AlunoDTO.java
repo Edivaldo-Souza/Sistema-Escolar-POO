@@ -2,6 +2,7 @@ package br.edu.ufersa.SistemaEscolar.api.dto;
 
 public class AlunoDTO {
 	private String nome;
+	private String usuario;
 	private String senha;
 	private String matricula;
 	private String rua;
@@ -13,6 +14,12 @@ public class AlunoDTO {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	public String getSenha() {
 		return senha;

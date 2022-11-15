@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_AController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_BController;
 import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
-import br.edu.ufersa.SistemaEscolar.model.entities.Turma;
 
 public class Telas extends Application{
 
@@ -17,7 +16,7 @@ public class Telas extends Application{
 	public void start(Stage arg0) throws Exception {
 		setStage(arg0);
 		arg0.setTitle("Sistema Escolar");
-		telaDefinirTurma_A();
+		paginaPrincipal();
 		
 	}
 	public static void main(String[] args) {
@@ -28,6 +27,34 @@ public class Telas extends Application{
 	
 	private static void setStage(Stage s) {
 		mainStage = s;
+	}
+	
+	public static void paginaPrincipal() {
+		try {
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/PaginaPrincipal.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Sistema Escolar");
+			mainStage.show();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void telaCadastrarAfiliado() {
+		try {
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/CadastrarAfiliado.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Novo cadastro");
+			mainStage.show();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void telaDefinirTurma_A() {

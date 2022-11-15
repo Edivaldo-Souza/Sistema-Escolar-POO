@@ -60,8 +60,28 @@ public  class DisciplinaBO{
 	}
 	
 
-	public List<DisciplinaDTO> selectAll(){
+	public List<DisciplinaDTO> listAll(){
 		ResultSet rs = dao.findAll();
+		List<DisciplinaDTO> lista = new ArrayList<DisciplinaDTO>();
+		try {
+			while(rs.next()) {
+				DisciplinaDTO dis = new DisciplinaDTO();
+				dis.setNome(rs.getString("nome"));
+				dis.setCodigo(rs.getString("codigo"));
+				lista.add(dis);
+			}
+			return lista;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<DisciplinaDTO> listByName(DisciplinaDTO entity){
+		Disciplina disciplina = new Disciplina();
+		disciplina.converter(entity);
+		ResultSet rs = dao.findBySpecifiedField(disciplina,"nome");
 		List<DisciplinaDTO> lista = new ArrayList<DisciplinaDTO>();
 		try {
 			while(rs.next()) {

@@ -7,11 +7,13 @@ import br.edu.ufersa.SistemaEscolar.model.entities.Aluno;
 
 public class AlunoDAO extends StandardDAO<Aluno>{
 	public boolean insert(Aluno e) {
-		String sql = "insert into tabela_aluno (matricula,nome) values (?,?);";
+		String sql = "insert into tabela_aluno (matricula,nome,usuario,senha) values (?,?,?,?);";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, e.getMatricula());
 			ps.setString(2, e.getNome());
+			ps.setString(3, e.getUsuario());
+			ps.setString(4, e.getSenha());
 			ps.execute();
 		}
 		catch(SQLException sqle){
@@ -59,11 +61,13 @@ public class AlunoDAO extends StandardDAO<Aluno>{
 	}
 	
 	public boolean alter(Aluno e) {
-		String sql = "update tabela_aluno set nome=? where matricula=?;";
+		String sql = "update tabela_aluno set nome=?, usuario=?, senha=? where matricula=?;";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setString(2, e.getNome());
-			ps.setString(3, e.getMatricula());
+			ps.setString(1, e.getNome());
+			ps.setString(2, e.getUsuario());
+			ps.setString(3, e.getSenha());
+			ps.setString(4, e.getMatricula());
 			ps.execute();
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();
@@ -117,4 +121,5 @@ public class AlunoDAO extends StandardDAO<Aluno>{
 			return null;
 		}
 	}
+	
 }

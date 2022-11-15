@@ -13,61 +13,57 @@ import br.edu.ufersa.SistemaEscolar.model.dao.ProfessorDAO;
 import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
 
 
-public class ProfessorBO implements InterfaceServices<Professor>{
+public class ProfessorBO implements InterfaceServices<ProfessorDTO>{
 	StandardDAO<Professor> dao = new ProfessorDAO();
 	StandardDAO<Turma> daoTM = new TurmaDAO();
 	
 	@Override
-	public boolean insert(Professor e) {
-		ResultSet rs = dao.findBySpecifiedField(e, "cpf");
-		try {
-			if(rs == null || !(rs.next())) {
-				if(dao.insert(e)) return true;
-				else return false;
-			}
-			else return false;
-		}
-		catch(SQLException sqle) {
-			sqle.printStackTrace();
-			return false;
-		}
+	public boolean insert(ProfessorDTO e) {
+		Professor professor = new Professor();
+		professor.converter(e);
+		dao.insert(professor);
+		return true;
 	}
 
 	@Override
-	public boolean delete(Professor e) {
-		ResultSet rs = dao.findBySpecifiedField(e, "cpf");
-		try {
-			if(rs == null || !(rs.next())) {
-				if(dao.delete(e)) return true;
-				else return false;
-			}
-			else return false;
-		}
-		catch(SQLException sqle) {
-			sqle.printStackTrace();
-			return false;
-		}
+	public boolean delete(ProfessorDTO e) {
+		Professor professor = new Professor();
+		professor.converter(e);
+		dao.delete(professor);
+		return true;
 	}
 
 	@Override
-	public boolean alter(Professor e) {
-		ResultSet rs = dao.findBySpecifiedField(e, "cpf");
-		try {
-			if(rs == null || !(rs.next())) {
-				if(dao.alter(e)) return true;
-				else return false;
-			}
-			else return false;
-		}
-		catch(SQLException sqle) {
-			sqle.printStackTrace();
-			return false;
-		}
+	public boolean alter(ProfessorDTO e) {
+		Professor professor = new Professor();
+		professor.converter(e);
+		dao.alter(professor);
+		return true;
 	}
 
-	public List<ProfessorDTO> selectAll() {
+	public List<ProfessorDTO> listAll() {
 		List<ProfessorDTO> professores = new ArrayList<ProfessorDTO>();
 		ResultSet rs = dao.findAll();
+		try {
+			while(rs.next()) {
+				ProfessorDTO prof = new ProfessorDTO();
+				prof.setCpf(rs.getString("cpf"));
+				prof.setNome(rs.getString("nome"));
+				
+				professores.add(prof);
+			}
+			return professores;
+		}catch(SQLException sqle) { 
+			sqle.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<ProfessorDTO> listByName(ProfessorDTO entity){
+		Professor e = new Professor();
+		e.converter(entity);
+		List<ProfessorDTO> professores = new ArrayList<ProfessorDTO>();
+		ResultSet rs = dao.findBySpecifiedField(e,"nome");
 		try {
 			while(rs.next()) {
 				ProfessorDTO prof = new ProfessorDTO();

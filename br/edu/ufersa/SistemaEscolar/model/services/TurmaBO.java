@@ -48,17 +48,15 @@ public class TurmaBO {
 	  dao.deletarTabelaAlunoTurma(id);
   }
 
-  public List<Turma> listar() {
-    List<Turma> lista = new ArrayList<Turma>();
+  public List<TurmaDTO> listAll() {
+    List<TurmaDTO> lista = new ArrayList<TurmaDTO>();
     ResultSet rs = dao.findAll();
     try {
       while (rs.next()) {
-        Turma vo = new Turma();
+        TurmaDTO vo = new TurmaDTO();
         vo.setId(rs.getInt("id"));
-        vo.getDisciplina().setCodigo(rs.getString("codigoDisciplina"));
-        vo.getDisciplina().setNome(rs.getString("nome"));
-        vo.getProfessor().setCpf(rs.getString("codigoProfessor"));
-        vo.getProfessor().setNome(rs.getString("nome"));
+        vo.setCodDisciplina(rs.getString("codigoDisciplina"));
+        vo.setCodProfessor(rs.getString("codigoProfessor"));
         vo.setHorario(rs.getString("horario"));
         vo.setLocal(rs.getString("local"));
         vo.setStatus(rs.getBoolean("status"));

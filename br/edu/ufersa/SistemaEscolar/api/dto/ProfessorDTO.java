@@ -3,9 +3,24 @@ package br.edu.ufersa.SistemaEscolar.api.dto;
 public class ProfessorDTO {
 	private String nome;
 	private String cpf;
+	private String usuario;
+	private String senha;
 	private String rua;
 	private String bairro;
 	private int numeroEndereco;
+	
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	public String getNome() {
 		return nome;
 	}
