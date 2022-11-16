@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class AlunoBO implements InterfaceServices<AlunoDTO>{
-	StandardDAO<Aluno> dao = new AlunoDAO();
+	AlunoDAO dao = new AlunoDAO();
 	
 	@Override
 	public boolean insert(AlunoDTO e) {
@@ -70,6 +70,21 @@ public class AlunoBO implements InterfaceServices<AlunoDTO>{
 				alunos.add(e);
 			}
 			return alunos;
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
+	}
+
+	public AlunoDTO findByLogin(AlunoDTO entity,String field) {
+		ResultSet rs = dao.findByLogin(entity, field); 
+		try {
+				rs.next();
+				AlunoDTO e = new AlunoDTO();
+				e.setUsuario(rs.getString("usuario"));
+				e.setSenha(rs.getString("senha"));
+				return e;
+		
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();
 			return null;

@@ -16,7 +16,7 @@ create table tabela_aluno(
 
 create table tabela_professor(
 	cpf varchar(15) primary key,
-    nome varchar(30)
+    nome varchar(30),
 	usuario varchar(30),
 	senha varchar(30)
 );
