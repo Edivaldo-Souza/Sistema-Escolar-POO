@@ -7,11 +7,13 @@ import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.model.entities.Aluno;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.AlunoDAO;
+import br.edu.ufersa.SistemaEscolar.model.dao.EnderecoDAO;
 import java.util.List;
 import java.util.ArrayList;
 
 public class AlunoBO implements InterfaceServices<AlunoDTO>{
 	AlunoDAO dao = new AlunoDAO();
+	EnderecoDAO endDAO = new EnderecoDAO();
 	
 	@Override
 	public boolean insert(AlunoDTO e) {
@@ -75,16 +77,41 @@ public class AlunoBO implements InterfaceServices<AlunoDTO>{
 			return null;
 		}
 	}
+	
+	public AlunoDTO findByMatriucla(String matricula) {
+		Aluno aluno = new Aluno();
+		aluno.setMatricula(matricula);
+		ResultSet rs = dao.findBySpecifiedField(aluno,"matricula");
+		ResultSet endRs = endDAO.findByMatricula(matricula);
+		try {
+			AlunoDTO e = new AlunoDTO();
+			while(rs.next()) {
+				e.setMatricula(rs.getString("matricula"));
+				e.setNome(rs.getString("nome"));
+			}
+			while(endRs.next()) {
+				e.setRua(endRs.getString("rua"));
+				e.setBairro(endRs.getString("bairro"));
+				e.setNumeroEndereco(endRs.getInt("numero"));
+			}
+			return e;
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
+	}
 
 	public AlunoDTO findByLogin(AlunoDTO entity,String field) {
-		ResultSet rs = dao.findByLogin(entity, field); 
+		ResultSet rs = dao.findByLogin(entity, field);
+		AlunoDTO e = new AlunoDTO();
 		try {
-				rs.next();
-				AlunoDTO e = new AlunoDTO();
+			while(rs.next()) {
 				e.setUsuario(rs.getString("usuario"));
 				e.setSenha(rs.getString("senha"));
-				return e;
-		
+				e.setMatricula(rs.getString("matricula"));
+			}
+			return e;
+
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();
 			return null;

@@ -39,6 +39,10 @@ public class DadosAlunoController implements Initializable{
 	@FXML
 	private TableColumn<AlunoDTO,Double> frequencia;
 	
+	private static String matriculaValue;
+	public static void setMatricula(String matricula) {
+		matriculaValue = matricula;
+	}
 	
 	private ObservableList<AlunoDTO> historico;
 	private AlunoBO alunoBO = new AlunoBO();
@@ -46,19 +50,23 @@ public class DadosAlunoController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub	
-	listarDadosAluno();
+		listarDadosAluno();
 	}
 	public void listarDadosAluno() {
-		String nomeRecebido = "recebido", matriculaRecebida = "XXXXX", enderecoRecebido = "aaaa";
-		nome.setText(nomeRecebido);
-		matricula.setText(matriculaRecebida);
-		endereco.setText(enderecoRecebido);
+		System.out.print("encontrou aluno");
+		System.out.print(matriculaValue);
+		AlunoDTO aluno1 = alunoBO.findByMatriucla(matriculaValue);
+		
+		nome.setText(aluno1.getNome());
+		matricula.setText(aluno1.getMatricula());
+		endereco.setText(aluno1.getRua()+" "+aluno1.getBairro()+" "+aluno1.getNumeroEndereco());
+		/*
 		disciplina.setCellValueFactory(new PropertyValueFactory<>("disciplina"));
 		nota1.setCellValueFactory(new PropertyValueFactory<>("unidade1"));
 		nota2.setCellValueFactory(new PropertyValueFactory<>("unidade2"));
 		nota3.setCellValueFactory(new PropertyValueFactory<>("unidade3"));
 		media.setCellValueFactory(new PropertyValueFactory<>("media"));
 		frequencia.setCellValueFactory(new PropertyValueFactory<>("frequencia"));
-		tabelaAluno.setItems(historico);
+		tabelaAluno.setItems(historico);*/
 	}
 }

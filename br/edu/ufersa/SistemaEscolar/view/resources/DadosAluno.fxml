@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="1050.0" maxWidth="1900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.DadosAlunoController">
+<Pane maxHeight="1050.0" maxWidth="1900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.DadosAlunoController">
    <children>
       <Label layoutX="26.0" layoutY="14.0" prefHeight="84.0" prefWidth="421.0" text="Dados do Aluno">
          <font>
@@ -33,17 +33,17 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="nome" layoutX="91.0" layoutY="98.0" prefHeight="27.0" prefWidth="421.0">
+      <Label fx:id="nome" layoutX="91.0" layoutY="98.0" prefHeight="27.0" prefWidth="421.0" text="A">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="matricula" layoutX="626.0" layoutY="98.0" prefHeight="27.0" prefWidth="291.0">
+      <Label fx:id="matricula" layoutX="626.0" layoutY="98.0" prefHeight="27.0" prefWidth="291.0" text="A">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="endereco" layoutX="122.0" layoutY="138.0" prefHeight="27.0" prefWidth="799.0">
+      <Label fx:id="endereco" layoutX="122.0" layoutY="138.0" prefHeight="27.0" prefWidth="799.0" text="A">
          <font>
             <Font size="18.0" />
          </font>

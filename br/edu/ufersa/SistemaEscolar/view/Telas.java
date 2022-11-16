@@ -8,8 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_AController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_BController;
+import br.edu.ufersa.SistemaEscolar.api.controllers.PaginaPrincipalController;
+import br.edu.ufersa.SistemaEscolar.api.controllers.*;
+import br.edu.ufersa.SistemaEscolar.api.dto.AfiliadoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
+import br.edu.ufersa.SistemaEscolar.model.services.SecaoTipo;
 
 public class Telas extends Application{
 
@@ -54,28 +58,14 @@ public class Telas extends Application{
 		}
 	}	
 	
-
-	
-	public static void paginaPrincipal() {
+	public static void paginaPrincipal(SecaoTipo secao, AfiliadoDTO user) {
 		try {
+			PaginaPrincipalController.setSecao(secao);
+			PaginaPrincipalController.setId(user);
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/PaginaPrincipal.fxml"));
 			Scene cena = new Scene(root);
 			mainStage.setScene(cena);
 			mainStage.setTitle("Sistema Escolar");
-			mainStage.show();
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void telaCadastrarAfiliado() {
-		try {
-			Parent root = FXMLLoader.load(Telas.class.getResource("resources/CadastrarAfiliado.fxml"));
-			Scene cena = new Scene(root);
-			mainStage.setScene(cena);
-			mainStage.setTitle("Novo cadastro");
 			mainStage.show();
 			
 		}
@@ -128,8 +118,9 @@ public class Telas extends Application{
 		}
 	}
 	
-	public static void telaDadosAluno () {
+	public static void telaDadosAluno (String matricula) {
 		try {
+			DadosAlunoController.setMatricula(matricula);
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DadosAluno.fxml"));
 			Scene cena = new Scene(root);
 			mainStage.setScene(cena);
@@ -141,7 +132,7 @@ public class Telas extends Application{
 			e.printStackTrace();
 		}
 	}	
-	public static void telaDadosProfessor () {
+	public static void telaDadosProfessor (String id) {
 		try {
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DadosProfessor.fxml"));
 			Scene cena = new Scene(root);

@@ -1,6 +1,7 @@
 package br.edu.ufersa.SistemaEscolar.api.controllers;
 
 import br.edu.ufersa.SistemaEscolar.model.services.*;
+import br.edu.ufersa.SistemaEscolar.view.Telas;
 import br.edu.ufersa.SistemaEscolar.model.dao.*;
 import br.edu.ufersa.SistemaEscolar.api.dto.*;
 
@@ -34,38 +35,48 @@ public class loginController {
 		usuarioField.setPromptText(usuarioMsg);
 	}
 	
-	public void loginUser(ActionEvent event) throws IOException{
+	public int loginUser(ActionEvent event) throws IOException{
 		String usuario,senha;
+		
 		usuario = usuarioField.getText().strip();
 		senha = senhaField.getText().strip();
 		
-		
-		AlunoDTO alunoDto = new AlunoDTO();
-		alunoDto.setUsuario(usuario);
-		alunoDto.setSenha(senha);
-		AlunoBO alunoBo = new AlunoBO();
-		AlunoDTO resultAluno = alunoBo.findByLogin(alunoDto,"usuario");
-		if(resultAluno != null) {
-			if(resultAluno.getSenha().compareTo(senha) == 0) {
-				switchToMain(event);
-			}
-			cleanFields("Senha Incorreta","Usuario");
-			return;
-	
-		} 
-		ProfessorDTO professorDto = new ProfessorDTO();
-		professorDto.setUsuario(usuario);
-		professorDto.setSenha(senha);
-		ProfessorBO professorBo = new ProfessorBO();
-		ProfessorDTO resultProfessor = professorBo.findByLogin(professorDto, "usuario");
-		if(resultProfessor != null) {
-			if(resultProfessor.getSenha().compareTo(senha) == 0) {
-				switchToMain(event);
-			}
-			cleanFields("Senha Incorreta","Usuario");
-			return;
+		if(usuarioField.getText().length()<=1 && senhaField.getText().length()<=1) {
+			System.out.println("seção do diretor");
+			Telas.paginaPrincipal(SecaoTipo.DIRETOR, null);
+			return 0;
 		}
-		cleanFields("Senha","Usuario Incorreto");
+		else{
+			AlunoDTO alunoDto = new AlunoDTO();
+			alunoDto.setUsuario(usuario);
+			alunoDto.setSenha(senha);
+			AlunoBO alunoBo = new AlunoBO();
+			AlunoDTO resultAluno = alunoBo.findByLogin(alunoDto,"usuario");
+			if(resultAluno.getSenha() != null) {
+				if(resultAluno.getSenha().compareTo(senha) == 0) {
+					Telas.paginaPrincipal(SecaoTipo.ALUNO,resultAluno);
+					//switchToMain(event);
+				}
+				cleanFields("Senha Incorreta","Usuario");
+				return 0;
+		
+			} 
+			ProfessorDTO professorDto = new ProfessorDTO();
+			professorDto.setUsuario(usuario);
+			professorDto.setSenha(senha);
+			ProfessorBO professorBo = new ProfessorBO();
+			ProfessorDTO resultProfessor = professorBo.findByLogin(professorDto, "usuario");
+			if(resultProfessor != null) {
+				if(resultProfessor.getSenha().compareTo(senha) == 0) {
+					Telas.paginaPrincipal(SecaoTipo.PROFESSOR,resultProfessor);
+					//switchToMain(event);
+				}
+				cleanFields("Senha Incorreta","Usuario");
+				return 0;
+			}
+			cleanFields("Senha","Usuario Incorreto");
+		}
+		return 0;
 
 	}
 	

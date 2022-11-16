@@ -82,12 +82,13 @@ public class ProfessorBO implements InterfaceServices<ProfessorDTO>{
 	
 	public ProfessorDTO findByLogin(ProfessorDTO entity,String field) {
 		ResultSet rs = dao.findByLogin(entity, field); 
-
+		ProfessorDTO e = new ProfessorDTO();
 		try {
-				rs.next();
-				ProfessorDTO e = new ProfessorDTO();
+				while(rs.next()) {
 				e.setUsuario(rs.getString("usuario"));
 				e.setSenha(rs.getString("senha"));
+				e.setCpf(rs.getString("cpf"));
+				}
 				return e;
 		
 		}catch(SQLException sqle) {

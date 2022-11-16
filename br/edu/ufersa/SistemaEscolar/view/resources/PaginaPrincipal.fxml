@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
@@ -24,14 +25,15 @@
         </items>
       </MenuButton>
       <Button layoutX="195.0" layoutY="68.0" mnemonicParsing="false" onAction="#buscar" text="Pesquisar" />
-      <MenuButton layoutX="533.0" layoutY="14.0" mnemonicParsing="false" text="A">
+      <MenuButton fx:id="userIcon" layoutX="504.0" layoutY="14.0" mnemonicParsing="false" text="Professor">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#consultarDadosUsuario" text="Consultar Dados" />
           <MenuItem mnemonicParsing="false" onAction="#editarDadosUsuario" text="Editar Dados" />
             <MenuItem mnemonicParsing="false" onAction="#sair" text="Sair" />
         </items>
       </MenuButton>
-      <Button layoutX="39.0" layoutY="14.0" mnemonicParsing="false" onAction="#definirTurma" text="Definir Turma" />
-      <Button layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#definirDisciplina" text="Definir Disciplina" />
+      <Button fx:id="buttonDefinirTurma" disable="true" layoutX="39.0" layoutY="14.0" mnemonicParsing="false" onAction="#definirTurma" text="Definir Turma" />
+      <Button fx:id="buttonDefinirDisciplina" disable="true" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#definirDisciplina" text="Definir Disciplina" />
+      <Label fx:id="userName" alignment="CENTER_RIGHT" layoutX="397.0" layoutY="14.0" prefHeight="17.0" prefWidth="105.0" text="UserName" />
    </children>
 </Pane>

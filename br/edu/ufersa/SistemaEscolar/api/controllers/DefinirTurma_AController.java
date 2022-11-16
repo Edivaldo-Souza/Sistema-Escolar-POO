@@ -26,6 +26,7 @@ import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
 import br.edu.ufersa.SistemaEscolar.model.services.DisciplinaBO;
 import br.edu.ufersa.SistemaEscolar.model.services.ProfessorBO;
 import br.edu.ufersa.SistemaEscolar.model.services.TurmaBO;
+import br.edu.ufersa.SistemaEscolar.model.services.SecaoTipo;
 
 
 public class DefinirTurma_AController implements InterfaceController,Initializable{
@@ -98,7 +99,7 @@ public class DefinirTurma_AController implements InterfaceController,Initializab
 	// Event Listener on Button.onAction
 	@FXML
 	public void quit(ActionEvent event) {
-		Telas.paginaPrincipal();
+		Telas.paginaPrincipal(SecaoTipo.DIRETOR,null);
 	}
 	@Override
 	public void listarAlunos() {
