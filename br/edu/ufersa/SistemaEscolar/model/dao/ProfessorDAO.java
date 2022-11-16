@@ -1,18 +1,28 @@
 package br.edu.ufersa.SistemaEscolar.model.dao;
+import br.edu.ufersa.SistemaEscolar.api.dto.*;
+
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import br.edu.ufersa.SistemaEscolar.model.entities.Aluno;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.model.entities.Professor;
 
 public class ProfessorDAO extends StandardDAO<Professor>{
 	public boolean insert(Professor e) {
-		String sql = "insert into tabela_professor (cpf,nome) values (?,?);";
+		String sql = "insert into tabela_professor (cpf,nome,usuario,senha) values (?,?,?,?);";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, e.getCpf());
 			ps.setString(2, e.getNome());
+			ps.setString(3, e.getUsuario());
+			ps.setString(4, e.getSenha());
 			ps.execute();
 		}
 		catch(SQLException sqle){
@@ -110,6 +120,26 @@ public class ProfessorDAO extends StandardDAO<Professor>{
 				ps.setString(1, e.getNome());
 				break;
 			}
+			ResultSet rs = ps.executeQuery();
+			return rs;
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
+	}
+	public ResultSet findByLogin(ProfessorDTO e, String field) {
+		String sql = "SELECT * FROM tabela_professor where "+field+"=?;";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			switch(field) {
+			case "usuario":
+				ps.setString(1, e.getUsuario());
+				break;
+			case "senha":
+				ps.setString(1, e.getSenha());
+				break;
+			}
+			
 			ResultSet rs = ps.executeQuery();
 			return rs;
 		}catch(SQLException sqle) {

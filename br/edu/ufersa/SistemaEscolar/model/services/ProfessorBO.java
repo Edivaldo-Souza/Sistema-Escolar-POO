@@ -10,11 +10,12 @@ import br.edu.ufersa.SistemaEscolar.model.entities.Turma;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.TurmaDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.ProfessorDAO;
+import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
 
 
 public class ProfessorBO implements InterfaceServices<ProfessorDTO>{
-	StandardDAO<Professor> dao = new ProfessorDAO();
+	ProfessorDAO dao = new ProfessorDAO();
 	StandardDAO<Turma> daoTM = new TurmaDAO();
 	
 	@Override
@@ -79,4 +80,19 @@ public class ProfessorBO implements InterfaceServices<ProfessorDTO>{
 		}
 	}
 	
+	public ProfessorDTO findByLogin(ProfessorDTO entity,String field) {
+		ResultSet rs = dao.findByLogin(entity, field); 
+
+		try {
+				rs.next();
+				ProfessorDTO e = new ProfessorDTO();
+				e.setUsuario(rs.getString("usuario"));
+				e.setSenha(rs.getString("senha"));
+				return e;
+		
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
+	}
 }

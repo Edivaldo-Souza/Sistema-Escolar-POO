@@ -1,4 +1,6 @@
 package br.edu.ufersa.SistemaEscolar.model.dao;
+import br.edu.ufersa.SistemaEscolar.api.dto.*;
+
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -114,6 +116,26 @@ public class AlunoDAO extends StandardDAO<Aluno>{
 				ps.setString(1, e.getNome());
 				break;
 			}
+			ResultSet rs = ps.executeQuery();
+			return rs;
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
+	}
+	public ResultSet findByLogin(AlunoDTO e, String field) {
+		String sql = "SELECT * FROM tabela_aluno where "+field+"=?;";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			switch(field) {
+			case "usuario":
+				ps.setString(1, e.getUsuario());
+				break;
+			case "senha":
+				ps.setString(1, e.getSenha());
+				break;
+			}
+			
 			ResultSet rs = ps.executeQuery();
 			return rs;
 		}catch(SQLException sqle) {

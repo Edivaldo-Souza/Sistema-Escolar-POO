@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
+import javafx.scene.layout.BorderPane;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_AController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_BController;
 import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
@@ -17,8 +17,7 @@ public class Telas extends Application{
 	public void start(Stage arg0) throws Exception {
 		setStage(arg0);
 		arg0.setTitle("Sistema Escolar");
-		paginaPrincipal();
-		
+		telaLogin();
 	}
 	public static void main(String[] args) {
 		launch();
@@ -29,6 +28,33 @@ public class Telas extends Application{
 	private static void setStage(Stage s) {
 		mainStage = s;
 	}
+	public static void telaLogin() {
+		try {
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/Login.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Login");
+			mainStage.show();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	public static void telaCadastro() {
+		try {
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/Cadastro.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Login");
+			mainStage.show();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+
 	
 	public static void paginaPrincipal() {
 		try {
