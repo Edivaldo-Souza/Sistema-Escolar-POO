@@ -1,5 +1,8 @@
 package br.edu.ufersa.SistemaEscolar.view;
 
+import br.edu.ufersa.SistemaEscolar.api.dto.*;
+
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_AController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_BController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.PaginaPrincipalController;
+import br.edu.ufersa.SistemaEscolar.api.controllers.EditarDisciplinaController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.*;
 import br.edu.ufersa.SistemaEscolar.api.dto.AfiliadoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
@@ -22,7 +26,9 @@ public class Telas extends Application{
 		setStage(arg0);
 		arg0.setTitle("Sistema Escolar");
 		telaLogin();
+		//telaEditarDisciplina();
 	}
+	
 	public static void main(String[] args) {
 		launch();
 	}
@@ -32,6 +38,35 @@ public class Telas extends Application{
 	private static void setStage(Stage s) {
 		mainStage = s;
 	}
+	public static void telaDefinirDisciplina() {
+		try {
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DefinirDisciplina.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Definir Disciplina");
+			mainStage.show();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void telaEditarDisciplina(DisciplinaDTO disciplina) {
+		try {
+			EditarDisciplinaController.setDisciplina(disciplina);
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/EditarDisciplina.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Editar Disciplina");
+			mainStage.show();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	public static void telaLogin() {
 		try {
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/Login.fxml"));

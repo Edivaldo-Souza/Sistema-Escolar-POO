@@ -223,7 +223,7 @@ public class PaginaPrincipalController implements Initializable{
 				editar.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						//Telas.paginaConsultarProfessor(entity.getCpf());
+						Telas.telaEditarDisciplina(entity);
 					}
 				});
 				

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.EditarDisciplinaController">
+   <children>
+      <HBox prefHeight="19.0" prefWidth="536.0">
+         <children>
+            <Label fx:id="titleLabel" prefHeight="72.0" prefWidth="502.0" text="Editar Disciplina">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#switchToMain" prefHeight="35.0" prefWidth="35.0" text="X" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="8.0" left="32.0" right="32.0" top="24.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="0.0" prefWidth="600.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="136.0" text="Codigo da Disciplina:">
+               <HBox.margin>
+                  <Insets right="4.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="codigoLabel" prefHeight="18.0" prefWidth="411.0" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="16.0" left="32.0" right="32.0" />
+         </VBox.margin>
+      </HBox>
+      <TextField fx:id="nomeField" prefHeight="32.0" prefWidth="1152.0" promptText="Nome">
+         <VBox.margin>
+            <Insets bottom="280.0" left="32.0" right="32.0" />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#delDisciplina" prefHeight="32.0" prefWidth="100.0" text="Deletar">
+               <HBox.margin>
+                  <Insets right="338.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#editDisciplina" prefHeight="32.0" prefWidth="100.0" text="Editar" />
+         </children>
+         <VBox.margin>
+            <Insets left="32.0" right="32.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

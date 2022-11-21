@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.DefinirDisciplinaController">
+   <children>
+      <Label fx:id="titleLabel" prefHeight="72.0" prefWidth="1280.0" text="Cadastro de Disciplina">
+         <VBox.margin>
+            <Insets bottom="16.0" left="32.0" right="32.0" top="26.0" />
+         </VBox.margin>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nomeField" prefHeight="32.0" prefWidth="1152.0" promptText="Nome">
+         <VBox.margin>
+            <Insets bottom="24.0" left="32.0" right="32.0" />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <TextField fx:id="codigoField" prefHeight="32.0" prefWidth="1152.0" promptText="Codigo">
+         <VBox.margin>
+            <Insets bottom="200.0" left="32.0" right="32.0" />
+         </VBox.margin>
+      </TextField>
+      <Button mnemonicParsing="false" onAction="#registerDisciplina" prefHeight="32.0" prefWidth="100.0" text="Button">
+         <VBox.margin>
+            <Insets left="468.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>
