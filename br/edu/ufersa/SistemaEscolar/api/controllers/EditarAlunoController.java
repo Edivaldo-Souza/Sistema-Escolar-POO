@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
+import br.edu.ufersa.SistemaEscolar.api.dto.*;
 import br.edu.ufersa.SistemaEscolar.model.services.EnderecoBO;
 import br.edu.ufersa.SistemaEscolar.model.services.SecaoTipo;
 import br.edu.ufersa.SistemaEscolar.view.Telas;
@@ -20,7 +20,9 @@ import javafx.scene.control.TextField;
 
 public class EditarAlunoController extends EditController implements Initializable {
 
-	private static AlunoDTO aluno;
+	private static AfiliadoDTO aluno;
+	private static String matricula;
+
 
 	@FXML
 	TextField nomeField;
@@ -44,7 +46,9 @@ public class EditarAlunoController extends EditController implements Initializab
 	private AlunoBO alunoBo = new AlunoBO();
 
 	public void delHandle() {
-		alunoBo.delete(aluno);
+		AlunoDTO temp =  new AlunoDTO();
+		temp.setMatricula(matricula);
+		alunoBo.delete(temp);
 	}
 
 	public void editHandle() {
@@ -67,7 +71,7 @@ public class EditarAlunoController extends EditController implements Initializab
 		}else if(senha.equals(senhaConfirm)){
 			alunoDto.setNome(nome);
 			alunoDto.setRua(rua);
-			alunoDto.setMatricula(aluno.getMatricula());
+			alunoDto.setMatricula(matricula);
 			alunoDto.setBairro(bairro);
 			alunoDto.setNumeroEndereco(numero);
 			alunoDto.setUsuario(usuario);	
@@ -84,17 +88,20 @@ public class EditarAlunoController extends EditController implements Initializab
 		}
 	}
 
-	public static void setAluno(AlunoDTO alunoEntity) {
+	public static void setAluno(AfiliadoDTO alunoEntity) {
 		aluno = alunoEntity;
+	}
+	public static void setMatricula(String matricula_temp) {
+		matricula = matricula_temp;
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		nomeField.setText(aluno.getNome());
-		matriculaLabel.setText("Matricula: " + aluno.getMatricula());
+		matriculaLabel.setText("Matricula: " + matricula);
 		usuarioField.setText(aluno.getUsuario());
 		EnderecoBO enderecoBo = new EnderecoBO();
-		Endereco endereco = enderecoBo.findByMatricula(aluno.getMatricula());
+		Endereco endereco = enderecoBo.findByMatricula(matricula);
 		ruaField.setText(endereco.getRua());
 		bairroField.setText(endereco.getBairro());
 		numeroField.setText(Integer.toString(endereco.getNumero()));
