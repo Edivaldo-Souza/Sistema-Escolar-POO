@@ -198,8 +198,9 @@ public class Telas extends Application{
 			e.printStackTrace();
 		}
 	}	
-	public static void telaDadosProfessor (String id) {
+	public static void telaDadosProfessor (String cpf) {
 		try {
+			DadosProfessorController.setCpf(cpf);
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DadosProfessor.fxml"));
 			Scene cena = new Scene(root);
 			mainStage.setScene(cena);
