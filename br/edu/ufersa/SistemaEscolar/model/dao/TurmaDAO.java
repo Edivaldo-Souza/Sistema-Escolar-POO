@@ -151,7 +151,19 @@ public class TurmaDAO extends StandardDAO<Turma> {
       e.printStackTrace();
     }
   }
-
+  public ResultSet listAlunos(int idturma) {
+	  String sql = "SELECT * FROM tabela_aluno_turma WHERE id_turma =?";
+	  try {
+	      PreparedStatement pst = getConnection().prepareStatement(sql);
+	      pst.setInt(1, idturma);
+	      ResultSet rs = pst.executeQuery();
+	      return rs;
+	    } catch (SQLException e) {
+	      // TODO: handle exception
+	      e.printStackTrace();
+	      return null;
+	    }
+  }
   @Override
   public ResultSet findBySpecifiedField(Turma vo, String field) {
     String sql = "SELECT * FROM Turma WHERE" + field + "=? ;";
@@ -167,6 +179,9 @@ public class TurmaDAO extends StandardDAO<Turma> {
           sql = "SELECT * FROM Turma WHERE id = ? ;";
           pst.setInt(1, vo.getId());
           break;
+        case "codigoProfessor":
+        	sql = "SELECT * FROM Turma WHERE codigoProfessor = ?;";
+        	pst.setString(1, vo.getProfessor().getCpf());
         default:
           break;
       }
@@ -178,6 +193,7 @@ public class TurmaDAO extends StandardDAO<Turma> {
       return null;
     }
   }
+
   @Override
   public ResultSet findAll() {
 	  String sql = "SELECT * FROM turma;";

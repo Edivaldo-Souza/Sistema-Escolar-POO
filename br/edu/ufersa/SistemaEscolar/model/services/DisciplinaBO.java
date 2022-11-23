@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 import br.edu.ufersa.SistemaEscolar.model.entities.Disciplina;
+import br.edu.ufersa.SistemaEscolar.model.entities.Professor;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.DisciplinaDAO;
 import br.edu.ufersa.SistemaEscolar.api.dto.DisciplinaDTO;
+import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
 
 public  class DisciplinaBO{
 	StandardDAO<Disciplina> dao = new DisciplinaDAO();

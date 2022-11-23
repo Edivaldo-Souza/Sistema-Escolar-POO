@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ufersa.SistemaEscolar.model.entities.Aluno;
 import br.edu.ufersa.SistemaEscolar.model.entities.Professor;
 import br.edu.ufersa.SistemaEscolar.model.entities.Turma;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.TurmaDAO;
+import br.edu.ufersa.SistemaEscolar.model.dao.EnderecoDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.ProfessorDAO;
 import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
@@ -16,6 +18,7 @@ import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
 
 public class ProfessorBO implements InterfaceServices<ProfessorDTO>{
 	ProfessorDAO dao = new ProfessorDAO();
+	EnderecoDAO endDAO = new EnderecoDAO();
 	StandardDAO<Turma> daoTM = new TurmaDAO();
 	
 	@Override
@@ -97,4 +100,28 @@ public class ProfessorBO implements InterfaceServices<ProfessorDTO>{
 			return null;
 		}
 	}
+	
+	public ProfessorDTO findByCPF(String cpf) {
+		Professor professor = new Professor();
+		professor.setCpf(cpf);
+		ResultSet rs = dao.findBySpecifiedField(professor,"cpf");
+		ResultSet endRs = endDAO.findByCpf(cpf);
+		try {
+			ProfessorDTO e = new ProfessorDTO();
+			while(rs.next()) {
+				e.setCpf(rs.getString("cpf"));
+				e.setNome(rs.getString("nome"));
+			}
+			while(endRs.next()) {
+				e.setRua(endRs.getString("rua"));
+				e.setBairro(endRs.getString("bairro"));
+				e.setNumeroEndereco(endRs.getInt("numero"));
+			}
+			return e;
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
+	}
+	
 }
