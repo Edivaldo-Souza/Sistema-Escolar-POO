@@ -48,7 +48,8 @@ public class AlunoBO implements InterfaceServices<AlunoDTO>{
 				AlunoDTO aluno = new AlunoDTO();
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setNome(rs.getString("nome"));
-				
+				aluno.setUsuario(rs.getString("usuario"));
+				aluno.setSenha(rs.getString("senha"));
 				alunos.add(aluno);
 			}
 			return alunos;

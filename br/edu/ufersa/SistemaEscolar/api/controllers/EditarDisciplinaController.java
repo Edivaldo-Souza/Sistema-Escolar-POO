@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class EditarDisciplinaController implements Initializable{
+public class EditarDisciplinaController extends EditController implements Initializable{
 	
 	@FXML
 	TextField nomeField;
@@ -28,9 +28,7 @@ public class EditarDisciplinaController implements Initializable{
 	public static void setDisciplina(DisciplinaDTO disciplinaEntity){
 		disciplina = disciplinaEntity;
 	}
-	public void switchToMain() {
-		Telas.paginaPrincipal(SecaoTipo.DIRETOR, null);		
-	}
+	
 	public void delDisciplina() {
 		Disciplina DisciplinaEntity = new Disciplina();
 		DisciplinaEntity.setCodigo(disciplina.getCodigo());

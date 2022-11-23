@@ -26,7 +26,6 @@ public class Telas extends Application{
 		setStage(arg0);
 		arg0.setTitle("Sistema Escolar");
 		telaLogin();
-		//telaEditarDisciplina();
 	}
 	
 	public static void main(String[] args) {
@@ -38,6 +37,38 @@ public class Telas extends Application{
 	private static void setStage(Stage s) {
 		mainStage = s;
 	}
+	
+
+	public static void telaEditarProfessor(ProfessorDTO entity) {
+		try {
+			EditarProfessorController.setProfessor(entity);
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/EditProfessor.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Editar Professor");
+			mainStage.show();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	
+	public static void telaEditarAluno(AlunoDTO entity) {
+		try {
+			EditarAlunoController.setAluno(entity);
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/EditAluno.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Editar Aluno");
+			mainStage.show();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	
 	public static void telaDefinirDisciplina() {
 		try {
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DefinirDisciplina.fxml"));

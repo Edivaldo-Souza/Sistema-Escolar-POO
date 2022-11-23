@@ -110,8 +110,15 @@ public class PaginaPrincipalController implements Initializable{
 					Telas.telaDadosAluno(entity.getMatricula());
 				}
 			});
+			Button editar = new Button("Editar");
+			editar.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					Telas.telaEditarAluno(entity);
+				}
+			});
 			
-			items.add(new ToolBar(tipo,arg1,arg2,consultar));
+			items.add(new ToolBar(tipo,arg1,arg2,consultar,editar));
 			items.get(i).setLayoutX(0);
 			items.get(i).setLayoutY(i*TOOLBAR_HIEGHT);
 			items.get(i).setPrefSize(TOOLBAR_WIDTH, TOOLBAR_HIEGHT);
@@ -149,8 +156,15 @@ public class PaginaPrincipalController implements Initializable{
 					//Telas.paginaConsultarProfessor(entity.getCpf());
 				}
 			});
+			Button editar = new Button("Editar");
+			editar.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					Telas.telaEditarProfessor(entity);
+				}
+			});
 			
-			items.add(new ToolBar(tipo,arg1,arg2,consultar));
+			items.add(new ToolBar(tipo,arg1,arg2,consultar,editar));
 			items.get(i).setLayoutX(0);
 			items.get(i).setLayoutY(i*TOOLBAR_HIEGHT);
 			items.get(i).setPrefSize(TOOLBAR_WIDTH, TOOLBAR_HIEGHT);

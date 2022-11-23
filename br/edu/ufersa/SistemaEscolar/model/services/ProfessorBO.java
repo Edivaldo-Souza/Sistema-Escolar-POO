@@ -50,7 +50,8 @@ public class ProfessorBO implements InterfaceServices<ProfessorDTO>{
 				ProfessorDTO prof = new ProfessorDTO();
 				prof.setCpf(rs.getString("cpf"));
 				prof.setNome(rs.getString("nome"));
-				
+				prof.setUsuario(rs.getString("usuario"));
+				prof.setSenha(rs.getString("senha"));
 				professores.add(prof);
 			}
 			return professores;
