@@ -37,7 +37,7 @@ public class DefinirDisciplinaController {
 		};
 		
 	}
-	
+	@FXML
 	public void registerDisciplina(ActionEvent event) throws IOException{
 		String nome,codigo;
 		nome = nomeField.getText().strip();

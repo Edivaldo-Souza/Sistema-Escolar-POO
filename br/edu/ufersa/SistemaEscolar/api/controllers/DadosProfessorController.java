@@ -42,7 +42,6 @@ public class DadosProfessorController implements Initializable {
 		cpfValue = cpf;
 	}
 	
-	
 	private ProfessorBO bo = new ProfessorBO();
 	private TurmaBO Tbo = new TurmaBO();
 	private ObservableList<TurmaDTO> listaTurmas;
