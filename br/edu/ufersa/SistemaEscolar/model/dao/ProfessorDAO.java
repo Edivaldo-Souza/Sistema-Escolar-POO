@@ -70,11 +70,15 @@ public class ProfessorDAO extends StandardDAO<Professor>{
 	}
 	
 	public boolean alter(Professor e) {
-		String sql = "update tabela_aluno set nome=? where cpf=?;";
+		String sql = "update tabela_professor set nome=?, usuario=?, senha=? where cpf=?;";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setString(2, e.getNome());
-			ps.setString(3, e.getCpf());
+			ps.setString(1, e.getNome());
+			ps.setString(2, e.getUsuario());
+			ps.setString(3, e.getSenha());
+			ps.setString(4, e.getCpf());
+			
+			
 			ps.execute();
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();

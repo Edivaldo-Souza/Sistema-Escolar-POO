@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class cadastroController {
+public class CadastroController {
 	
 	@FXML
 	TextField nomeField;
@@ -37,7 +37,7 @@ public class cadastroController {
 	private Scene scene;
 	
 	private void switchToLogin(ActionEvent event) throws IOException{
-		Parent root = FXMLLoader.load(loginController.class.getResource("/br/edu/ufersa/SistemaEscolar/view/resources/Login.fxml"));
+		Parent root = FXMLLoader.load(LoginController.class.getResource("/br/edu/ufersa/SistemaEscolar/view/resources/Login.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

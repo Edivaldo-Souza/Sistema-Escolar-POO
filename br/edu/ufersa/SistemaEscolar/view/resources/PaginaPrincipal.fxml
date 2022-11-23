@@ -27,8 +27,8 @@
       <Button layoutX="195.0" layoutY="68.0" mnemonicParsing="false" onAction="#buscar" text="Pesquisar" />
       <MenuButton fx:id="userIcon" layoutX="504.0" layoutY="14.0" mnemonicParsing="false" text="Professor">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#consultarDadosUsuario" text="Consultar Dados" />
-          <MenuItem mnemonicParsing="false" onAction="#editarDadosUsuario" text="Editar Dados" />
+          <MenuItem fx:id="menuConsultar" mnemonicParsing="false" onAction="#consultarDadosUsuario" text="Consultar Dados" />
+          <MenuItem fx:id="menuEditar" mnemonicParsing="false" onAction="#editarDadosUsuario" text="Editar Dados" />
             <MenuItem mnemonicParsing="false" onAction="#sair" text="Sair" />
         </items>
       </MenuButton>

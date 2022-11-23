@@ -97,4 +97,24 @@ public  class DisciplinaBO{
 			return null;
 		}
 	}
+	
+	public DisciplinaDTO findByCod(String cod) {
+		Disciplina disciplina = new Disciplina();
+		disciplina.setCodigo(cod);
+		disciplina.setNome("0");
+		ResultSet rs = dao.findBySpecifiedField(disciplina,"codigo");
+		try {
+			DisciplinaDTO dis = new DisciplinaDTO();
+			while(rs.next()) {
+				dis.setNome(rs.getString("nome"));
+				dis.setCodigo(rs.getString("codigo"));
+				
+			}
+			return dis;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
