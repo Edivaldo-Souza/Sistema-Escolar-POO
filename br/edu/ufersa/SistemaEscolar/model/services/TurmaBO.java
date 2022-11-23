@@ -68,6 +68,30 @@ public class TurmaBO {
       return null;
     }
   }
+  
+  public List<TurmaDTO> turmasProfessor(TurmaDTO t){
+	  Turma turma = new Turma();
+	  turma.converter(t);
+	  List<TurmaDTO> lista = new ArrayList<TurmaDTO>();	  	  
+	  ResultSet rs = dao.findBySpecifiedField(turma, "cpf");
+	  try {
+		  while (rs.next()) {
+			  TurmaDTO to = new TurmaDTO();
+			  to.setId(rs.getInt("id"));
+		      to.setCodDisciplina(rs.getString("codigoDisciplina"));
+		      to.setCodProfessor(rs.getString("codigoProfessor"));
+		      to.setHorario(rs.getString("horario"));
+		      to.setLocal(rs.getString("local"));
+		      to.setStatus(rs.getBoolean("status"));
+		      lista.add(to);
+		  }
+		  return lista;
+	  }
+	  catch (SQLException e) {
+	      e.printStackTrace();
+	      return null;
+	    }
+  }
 
   public boolean removeBySpecificField(Turma vo, String field) {
     ResultSet rs = dao.findBySpecifiedField(vo, field);

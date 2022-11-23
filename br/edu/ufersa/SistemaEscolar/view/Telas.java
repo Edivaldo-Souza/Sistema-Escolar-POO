@@ -203,7 +203,7 @@ public class Telas extends Application{
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DadosProfessor.fxml"));
 			Scene cena = new Scene(root);
 			mainStage.setScene(cena);
-			mainStage.setTitle("Dados Aluno");
+			mainStage.setTitle("Dados Professor");
 			mainStage.show();
 			
 		}

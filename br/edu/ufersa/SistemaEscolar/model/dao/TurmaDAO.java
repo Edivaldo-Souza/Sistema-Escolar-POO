@@ -154,6 +154,9 @@ public class TurmaDAO extends StandardDAO<Turma> {
           sql = "SELECT * FROM Turma WHERE id = ? ;";
           pst.setInt(1, vo.getId());
           break;
+        case "codigoProfessor":
+        	sql = "SELECT * FROM Turma WHERE codigoProfessor = ?;";
+        	pst.setString(1, vo.getProfessor().getCpf());
         default:
           break;
       }
