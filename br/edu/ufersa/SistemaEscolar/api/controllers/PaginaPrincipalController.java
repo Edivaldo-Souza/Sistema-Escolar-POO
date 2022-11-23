@@ -142,7 +142,7 @@ public class PaginaPrincipalController implements Initializable{
 			consultar.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					//Telas.paginaConsultarProfessor(entity.getCpf());
+					Telas.telaDadosProfessor(entity.getCpf());
 				}
 			});
 			
@@ -180,7 +180,7 @@ public class PaginaPrincipalController implements Initializable{
 			consultar.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					Telas.telaLancarNotas(entity.getId());
+					
 				}
 			});
 			
@@ -264,7 +264,7 @@ public class PaginaPrincipalController implements Initializable{
 				consultar.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						//Telas.paginaConsultarProfessor(entity.getCpf());
+						Telas.telaDadosAluno(entity.getMatricula(),true);
 					}
 				});
 				
@@ -303,7 +303,7 @@ public class PaginaPrincipalController implements Initializable{
 				consultar.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						//Telas.paginaConsultarProfessor(entity.getCpf());
+						Telas.telaDadosProfessor(entity.getCpf());
 					}
 				});
 				
@@ -341,7 +341,7 @@ public class PaginaPrincipalController implements Initializable{
 					editar.setOnAction(new EventHandler<ActionEvent>() {
 						@Override
 						public void handle(ActionEvent event) {
-							//Telas.paginaConsultarProfessor(entity.getCpf());
+							Telas.telaEditarDisciplina(entity);
 						}
 					});
 					
@@ -375,7 +375,14 @@ public class PaginaPrincipalController implements Initializable{
 		}
 	}
 	@FXML
-	public void editarDadosUsuario() {}
+	public void editarDadosUsuario() {
+		if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.ALUNO) {
+			Telas.telaEditarAluno(null);
+		}
+		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.PROFESSOR) {
+			Telas.telaEditarProfessor(null);
+		}
+	}
 	@FXML
 	public void sair() {
 		Telas.telaLogin();
