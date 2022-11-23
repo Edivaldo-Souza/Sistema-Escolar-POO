@@ -110,6 +110,7 @@ public class AlunoBO implements InterfaceServices<AlunoDTO>{
 				e.setUsuario(rs.getString("usuario"));
 				e.setSenha(rs.getString("senha"));
 				e.setMatricula(rs.getString("matricula"));
+				e.setNome(rs.getString("nome"));
 			}
 			return e;
 

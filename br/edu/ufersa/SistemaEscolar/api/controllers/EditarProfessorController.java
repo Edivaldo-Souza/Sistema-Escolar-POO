@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
+import br.edu.ufersa.SistemaEscolar.api.dto.*;
 import br.edu.ufersa.SistemaEscolar.model.services.EnderecoBO;
 import br.edu.ufersa.SistemaEscolar.model.services.SecaoTipo;
 import br.edu.ufersa.SistemaEscolar.view.Telas;
@@ -20,7 +20,8 @@ import javafx.scene.control.TextField;
 
 public class EditarProfessorController extends EditController implements Initializable {
 
-	private static ProfessorDTO professor;
+	private static AfiliadoDTO professor;
+	private static String cpf;
 
 	@FXML
 	TextField nomeField;
@@ -44,7 +45,9 @@ public class EditarProfessorController extends EditController implements Initial
 	private ProfessorBO professorBo = new ProfessorBO();
 	
 	public void delHandle() {
-		professorBo.delete(professor);
+		ProfessorDTO temp = new ProfessorDTO();
+		temp.setCpf(cpf);
+		professorBo.delete(temp);
 	}
 	public void editHandle() {
 		ProfessorDTO professorDto = new ProfessorDTO();
@@ -66,7 +69,7 @@ public class EditarProfessorController extends EditController implements Initial
 		}else if(senha.equals(senhaConfirm)){
 			professorDto.setNome(nome);
 			professorDto.setRua(rua);
-			professorDto.setCpf(professor.getCpf());
+			professorDto.setCpf(cpf);
 			professorDto.setBairro(bairro);
 			professorDto.setNumeroEndereco(numero);
 			professorDto.setUsuario(usuario);
@@ -83,17 +86,21 @@ public class EditarProfessorController extends EditController implements Initial
 		}
 	}
 
-	public static void setProfessor(ProfessorDTO professorEntity) {
+	public static void setProfessor(AfiliadoDTO professorEntity) {
 		professor = professorEntity;
 	}
+	public static void setCpf(String cpf_temp) {
+		cpf = cpf_temp;
+	}
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		nomeField.setText(professor.getNome());
-		cpfLabel.setText("CPF: "+professor.getCpf());
+		cpfLabel.setText("CPF: "+cpf);
 		usuarioField.setText(professor.getUsuario());
 		EnderecoBO enderecoBo = new EnderecoBO();
-		Endereco endereco = enderecoBo.findByCpf(professor.getCpf());
+		Endereco endereco = enderecoBo.findByCpf(cpf);
 		ruaField.setText(endereco.getRua());
 		bairroField.setText(endereco.getBairro());
 		numeroField.setText(Integer.toString(endereco.getNumero()));

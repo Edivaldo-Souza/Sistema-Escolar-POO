@@ -92,6 +92,7 @@ public class ProfessorBO implements InterfaceServices<ProfessorDTO>{
 				e.setUsuario(rs.getString("usuario"));
 				e.setSenha(rs.getString("senha"));
 				e.setCpf(rs.getString("cpf"));
+				e.setNome(rs.getString("nome"));
 				}
 				return e;
 		

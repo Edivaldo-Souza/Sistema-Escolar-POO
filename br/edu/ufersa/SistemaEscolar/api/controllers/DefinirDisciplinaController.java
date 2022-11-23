@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import br.edu.ufersa.SistemaEscolar.model.services.*;
+import br.edu.ufersa.SistemaEscolar.view.Telas;
 import br.edu.ufersa.SistemaEscolar.model.entities.*;
 
 
@@ -47,6 +48,7 @@ public class DefinirDisciplinaController {
 			Disciplina disciplina = new Disciplina(nome,codigo);
 			DisciplinaBO disciplinaBo = new DisciplinaBO();
 			disciplinaBo.insert(disciplina);
+			Telas.paginaPrincipal();
 		}else {
 			String nomeMsg = "";
 			String codigoMsg = "";

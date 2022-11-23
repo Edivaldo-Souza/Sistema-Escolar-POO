@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.DefinirDisciplinaController">
    <children>
       <Label fx:id="titleLabel" prefHeight="72.0" prefWidth="1280.0" text="Cadastro de Disciplina">
@@ -31,7 +30,7 @@
             <Insets bottom="200.0" left="32.0" right="32.0" />
          </VBox.margin>
       </TextField>
-      <Button mnemonicParsing="false" onAction="#registerDisciplina" prefHeight="32.0" prefWidth="100.0" text="Button">
+      <Button mnemonicParsing="false" onAction="#registerDisciplina" prefHeight="32.0" prefWidth="100.0" text="Adicionar">
          <VBox.margin>
             <Insets left="468.0" />
          </VBox.margin>

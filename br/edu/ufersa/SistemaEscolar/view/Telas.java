@@ -38,9 +38,10 @@ public class Telas extends Application{
 	}
 	
 
-	public static void telaEditarProfessor(ProfessorDTO entity) {
+	public static void telaEditarProfessor(AfiliadoDTO entity,String cpf) {
 		try {
 			EditarProfessorController.setProfessor(entity);
+			EditarProfessorController.setCpf(cpf);
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/EditProfessor.fxml"));
 			Scene cena = new Scene(root);
 			mainStage.setScene(cena);
@@ -53,9 +54,12 @@ public class Telas extends Application{
 	}	
 	
 	
-	public static void telaEditarAluno(AlunoDTO entity) {
+	public static void telaEditarAluno(AfiliadoDTO entity,String matricula) {
 		try {
 			EditarAlunoController.setAluno(entity);
+			EditarAlunoController.setMatricula(matricula);
+			
+			
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/EditAluno.fxml"));
 			Scene cena = new Scene(root);
 			mainStage.setScene(cena);

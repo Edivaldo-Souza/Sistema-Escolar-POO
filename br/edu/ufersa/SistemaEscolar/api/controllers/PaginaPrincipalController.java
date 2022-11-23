@@ -379,10 +379,10 @@ public class PaginaPrincipalController implements Initializable{
 	@FXML
 	public void editarDadosUsuario() {
 		if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.ALUNO) {
-			Telas.telaEditarAluno(null);
+			Telas.telaEditarAluno(SecaoDTO.getSecao().getUsuarioAtual(),SecaoDTO.getSecao().getUsuarioId());
 		}
 		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.PROFESSOR) {
-			Telas.telaEditarProfessor(null);
+			Telas.telaEditarProfessor(SecaoDTO.getSecao().getUsuarioAtual(),SecaoDTO.getSecao().getUsuarioId());
 		}
 	}
 	@FXML
