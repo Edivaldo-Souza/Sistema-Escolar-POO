@@ -47,6 +47,7 @@ public class DadosProfessorController implements Initializable {
 	private TurmaBO Tbo = new TurmaBO();
 	private ObservableList<TurmaDTO> listaTurmas;
 	
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub	
 		listarDadosProfessor();

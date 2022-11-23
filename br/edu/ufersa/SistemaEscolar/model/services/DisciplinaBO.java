@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 import br.edu.ufersa.SistemaEscolar.model.entities.Disciplina;
+import br.edu.ufersa.SistemaEscolar.model.entities.Professor;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 import br.edu.ufersa.SistemaEscolar.model.dao.DisciplinaDAO;
 import br.edu.ufersa.SistemaEscolar.api.dto.DisciplinaDTO;
+import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
 
 public  class DisciplinaBO{
 	StandardDAO<Disciplina> dao = new DisciplinaDAO();
@@ -94,6 +96,24 @@ public  class DisciplinaBO{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public DisciplinaDTO findByCod(String cod) {
+		Disciplina d = new Disciplina();
+		d.setCodigo(cod);
+		ResultSet rs = dao.findBySpecifiedField(d,"codigo");		
+		try {
+			DisciplinaDTO e = new DisciplinaDTO();
+			while(rs.next()) {
+				e.setCodigo(rs.getString("codigo"));
+				e.setNome(rs.getString("nome"));
+			}
+			
+			return e;
+		}catch(SQLException sqle) {
+			sqle.printStackTrace();
 			return null;
 		}
 	}

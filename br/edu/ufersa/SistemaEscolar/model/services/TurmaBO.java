@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.edu.ufersa.SistemaEscolar.model.dao.TurmaDAO;
 import br.edu.ufersa.SistemaEscolar.model.entities.Turma;
+import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 
@@ -67,6 +68,46 @@ public class TurmaBO {
       e.printStackTrace();
       return null;
     }
+  }
+  public List<AlunoDTO> listAlunosId(int idturma){
+	  List<AlunoDTO> alunos = new ArrayList<AlunoDTO>();
+	  TurmaDAO tdao = new TurmaDAO();
+	  ResultSet rs = tdao.listAlunos(idturma);
+	  try {
+		  while(rs.next()) {
+			  AlunoDTO aluno = new AlunoDTO();
+			  aluno.setMatricula(rs.getString("mat_aluno"));
+			  alunos.add(aluno);
+		  }
+		  return alunos;
+	  }
+	  catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
+  }
+  
+  public TurmaDTO findById(int id) {
+	  Turma turma = new Turma();
+	  turma.setId(id);
+	  ResultSet rs = dao.findBySpecifiedField(turma, "id");
+	  try {
+		  TurmaDTO t = new TurmaDTO();
+		  while(rs.next()) {
+			  t.setId(rs.getInt("id"));
+			  t.setCodDisciplina(rs.getString("codigoDisciplina"));
+			  t.setCodProfessor(rs.getString("codigoProfessor"));
+			  t.setHorario(rs.getString("horario"));
+			  t.setLocal(rs.getString("local"));
+			  t.setStatus(rs.getBoolean("status"));			  
+			
+		  }
+		  return t;
+	  }
+	  catch(SQLException sqle) {
+			sqle.printStackTrace();
+			return null;
+		}
   }
   
   public List<TurmaDTO> turmasProfessor(TurmaDTO t){

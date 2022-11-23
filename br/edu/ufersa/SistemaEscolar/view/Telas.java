@@ -211,6 +211,19 @@ public class Telas extends Application{
 			e.printStackTrace();
 		}
 	}
+	public static void telaDadosTurma (String id) {
+		try {
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DadosTurma.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Dados Turma");
+			mainStage.show();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
 
