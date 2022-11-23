@@ -145,6 +145,20 @@ public class Telas extends Application{
 			e.printStackTrace();
 		}
 	}
+	public static void telaLancarNotas(int id) {
+		try {
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/LancarNotas.fxml"));
+			Scene cena = new Scene(root);
+			LancarNotasController.setTurma(id);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Dados Aluno");
+			mainStage.show();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
 

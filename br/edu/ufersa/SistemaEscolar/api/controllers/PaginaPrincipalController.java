@@ -184,7 +184,7 @@ public class PaginaPrincipalController implements Initializable{
 			consultar.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					//Telas.paginaConsultarTurma(entity.getMatricula());
+					Telas.telaLancarNotas(entity.getId());
 				}
 			});
 			
