@@ -42,10 +42,14 @@ public class LoginController {
 		
 		if(usuarioField.getText().length()<=1 && senhaField.getText().length()<=1) {
 			System.out.println("seção do diretor");
-			Telas.paginaPrincipal(SecaoTipo.DIRETOR, null);
+			SecaoDTO.getSecao().setMinhaSecao(SecaoTipo.DIRETOR);
+			SecaoDTO.getSecao().setUsuarioAtual(null);
+			SecaoDTO.getSecao().setUsuarioId("0");
+			Telas.paginaPrincipal();
 			return 0;
 		}
 		else{
+			
 			AlunoDTO alunoDto = new AlunoDTO();
 			alunoDto.setUsuario(usuario);
 			alunoDto.setSenha(senha);
@@ -53,7 +57,10 @@ public class LoginController {
 			AlunoDTO resultAluno = alunoBo.findByLogin(alunoDto,"usuario");
 			if(resultAluno.getSenha() != null) {
 				if(resultAluno.getSenha().compareTo(senha) == 0) {
-					Telas.paginaPrincipal(SecaoTipo.ALUNO,resultAluno);
+					SecaoDTO.getSecao().setMinhaSecao(SecaoTipo.ALUNO);
+					SecaoDTO.getSecao().setUsuarioAtual(resultAluno);
+					SecaoDTO.getSecao().setUsuarioId(resultAluno.getMatricula());
+					Telas.paginaPrincipal();
 				}
 				cleanFields("Senha Incorreta","Usuario");
 				return 0;
@@ -65,7 +72,10 @@ public class LoginController {
 			ProfessorDTO resultProfessor = professorBo.findByLogin(professorDto, "usuario");
 			if(resultProfessor != null) {
 				if(resultProfessor.getSenha().compareTo(senha) == 0) {
-					Telas.paginaPrincipal(SecaoTipo.PROFESSOR,resultProfessor);
+					SecaoDTO.getSecao().setMinhaSecao(SecaoTipo.PROFESSOR);
+					SecaoDTO.getSecao().setUsuarioAtual(resultProfessor);
+					SecaoDTO.getSecao().setUsuarioId(resultProfessor.getCpf());
+					Telas.paginaPrincipal();
 				}
 				cleanFields("Senha Incorreta","Usuario");
 				return 0;

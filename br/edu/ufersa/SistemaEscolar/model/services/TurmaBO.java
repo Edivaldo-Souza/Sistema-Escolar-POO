@@ -12,7 +12,7 @@ import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 
 public class TurmaBO {
-  StandardDAO<Turma> dao = new TurmaDAO();
+	TurmaDAO dao = new TurmaDAO();
 
   public void insert(TurmaDTO vo) {
 	Turma turma = new Turma();
@@ -47,6 +47,27 @@ public class TurmaBO {
   
   public void deletarTabelaAlunoTurma(int id) {
 	  dao.deletarTabelaAlunoTurma(id);
+  }
+  
+  public List<String> listMatriculasAlunosByTurma(int id){
+	  List<String> lista = new ArrayList<String>();
+	  ResultSet rs = dao.findByTurmaID(id);
+	  try {
+		  while (rs.next()) {
+			  TurmaDTO vo = new TurmaDTO();
+			  vo.setId(rs.getInt("id"));
+			  vo.setCodDisciplina(rs.getString("codigoDisciplina"));
+			  vo.setCodProfessor(rs.getString("codigoProfessor"));
+			  vo.setHorario(rs.getString("horario"));
+			  vo.setLocal(rs.getString("local"));
+			  vo.setStatus(rs.getBoolean("status"));
+			  //lista.add(vo);
+		  }
+		  return lista;
+	  } catch (SQLException e) {
+		  e.printStackTrace();
+		  return null;
+	  } 
   }
 
   public List<TurmaDTO> listAll() {

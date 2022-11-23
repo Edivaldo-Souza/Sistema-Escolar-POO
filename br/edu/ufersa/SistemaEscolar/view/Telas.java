@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_AController;
-import br.edu.ufersa.SistemaEscolar.api.controllers.DefinirTurma_BController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.PaginaPrincipalController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.EditarDisciplinaController;
 import br.edu.ufersa.SistemaEscolar.api.controllers.*;
@@ -124,10 +123,8 @@ public class Telas extends Application{
 		}
 	}	
 	
-	public static void paginaPrincipal(SecaoTipo secao, AfiliadoDTO user) {
+	public static void paginaPrincipal() {
 		try {
-			PaginaPrincipalController.setSecao(secao);
-			PaginaPrincipalController.setId(user);
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/PaginaPrincipal.fxml"));
 			Scene cena = new Scene(root);
 			mainStage.setScene(cena);
@@ -169,22 +166,7 @@ public class Telas extends Application{
 		}
 	}
 	
-	public static void telaDefinirTurma_B(TurmaDTO entity) {
-		try {
-			DefinirTurma_BController.setTurma(entity);
-			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DefinirTurma_B.fxml"));
-			Scene cena = new Scene(root);
-			mainStage.setScene(cena);
-			mainStage.setTitle("Definir Turma");
-			mainStage.show();
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void telaDadosAluno (String matricula) {
+	public static void telaDadosAluno (String matricula,boolean disableHistorico) {
 		try {
 			DadosAlunoController.setMatricula(matricula);
 			Parent root = FXMLLoader.load(Telas.class.getResource("resources/DadosAluno.fxml"));
@@ -218,6 +200,20 @@ public class Telas extends Application{
 			Scene cena = new Scene(root);
 			mainStage.setScene(cena);
 			mainStage.setTitle("Dados Turma");
+			mainStage.show();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void telaLancarNotas(int id) {
+		try {
+			LancarNotasController.setTurma(id);
+			Parent root = FXMLLoader.load(Telas.class.getResource("resources/LancarNotas.fxml"));
+			Scene cena = new Scene(root);
+			mainStage.setScene(cena);
+			mainStage.setTitle("Dados Aluno");
 			mainStage.show();
 			
 		}

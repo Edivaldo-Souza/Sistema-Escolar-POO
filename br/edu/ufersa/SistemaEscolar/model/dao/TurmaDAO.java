@@ -55,6 +55,19 @@ public class TurmaDAO extends StandardDAO<Turma> {
 	  }
   }
   
+  public ResultSet findByTurmaID(int id) {
+	  String sql = "select * from tabela_aluno_turma where id_turma=?;";
+	  try {
+		PreparedStatement ptst = getConnection().prepareStatement(sql);
+		ptst.setInt(1, id);
+		ResultSet rs = ptst.executeQuery();
+		return rs;
+	  } catch (SQLException e) {
+		  e.printStackTrace();
+		  return null;
+	  }
+  }
+  
   public ResultSet findLastTurma() {
 	  String sql = "select * from turma order by id desc limit 1;";
 	  try {

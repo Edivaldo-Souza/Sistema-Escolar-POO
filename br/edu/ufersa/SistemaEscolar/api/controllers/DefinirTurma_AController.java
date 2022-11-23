@@ -85,21 +85,21 @@ public class DefinirTurma_AController implements InterfaceController,Initializab
 			if(this.turma == null) {
 				turmaBo.insert(turma);
 				System.out.println("inserindo nova turma");
-				Telas.telaDefinirTurma_B(turma);
+				Telas.paginaPrincipal();
 			}
 			else {
 				turma.setId(this.turma.getId());
 				System.out.println("alterando nova turma: " + turma.getId());
 				turmaBo.alter(turma);
 				setTurma(turma);
-				Telas.telaDefinirTurma_B(this.turma);
+				Telas.paginaPrincipal();
 			}
 		}
 	}
 	// Event Listener on Button.onAction
 	@FXML
 	public void quit(ActionEvent event) {
-		Telas.paginaPrincipal(SecaoTipo.DIRETOR,null);
+		Telas.paginaPrincipal();
 	}
 	@Override
 	public void listarAlunos() {

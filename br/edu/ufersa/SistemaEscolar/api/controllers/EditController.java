@@ -13,7 +13,7 @@ public abstract class EditController{
 	}
 	
 	public void switchToMain() {
-		Telas.paginaPrincipal(SecaoTipo.DIRETOR, null);		
+		Telas.paginaPrincipal();		
 	}
 	
 	public boolean checkLogin(String usuario,String senha,String confirmSenha) {

@@ -76,7 +76,7 @@ public class EditarProfessorController extends EditController implements Initial
 				professorDto.setSenha(senha);
 			};
 			professorBo.alter(professorDto);
-			Telas.paginaPrincipal(SecaoTipo.DIRETOR, null);
+			Telas.paginaPrincipal();
 		}else {
 			errorLabel.setText("As senhas não coincidem.");
 			return;

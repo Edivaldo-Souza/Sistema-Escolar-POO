@@ -101,19 +101,21 @@ public  class DisciplinaBO{
 	}
 	
 	public DisciplinaDTO findByCod(String cod) {
-		Disciplina d = new Disciplina();
-		d.setCodigo(cod);
-		ResultSet rs = dao.findBySpecifiedField(d,"codigo");		
+		Disciplina disciplina = new Disciplina();
+		disciplina.setCodigo(cod);
+		disciplina.setNome("0");
+		ResultSet rs = dao.findBySpecifiedField(disciplina,"codigo");
 		try {
-			DisciplinaDTO e = new DisciplinaDTO();
+			DisciplinaDTO dis = new DisciplinaDTO();
 			while(rs.next()) {
-				e.setCodigo(rs.getString("codigo"));
-				e.setNome(rs.getString("nome"));
+				dis.setNome(rs.getString("nome"));
+				dis.setCodigo(rs.getString("codigo"));
+				
 			}
-			
-			return e;
-		}catch(SQLException sqle) {
-			sqle.printStackTrace();
+			return dis;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
 	}

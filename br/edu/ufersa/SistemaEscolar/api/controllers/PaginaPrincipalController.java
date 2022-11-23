@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.MenuButton;
-
+import javafx.scene.control.MenuItem;
 import br.edu.ufersa.SistemaEscolar.model.services.AlunoBO;
 import br.edu.ufersa.SistemaEscolar.model.services.ProfessorBO;
 import br.edu.ufersa.SistemaEscolar.model.services.TurmaBO;
@@ -40,6 +40,10 @@ public class PaginaPrincipalController implements Initializable{
 	private MenuButton userIcon;
 	@FXML
 	private Label userName;
+	@FXML
+	private MenuItem menuConsultar;
+	@FXML
+	private MenuItem menuEditar;
 	
 	private AlunoBO alunoBO;
 	private ProfessorBO profBO;
@@ -47,15 +51,6 @@ public class PaginaPrincipalController implements Initializable{
 	private DisciplinaBO disciplinaBO;
 	
 	private boolean selecao[] = new boolean[4];
-	
-	private static SecaoTipo minhaSecao;
-	private static AfiliadoDTO usuarioAtual;
-	public static void setSecao(SecaoTipo s) {
-		minhaSecao = s;
-	}
-	public static void setId(AfiliadoDTO user) {
-		usuarioAtual = user;
-	}
 	
 	private final int IS_ALUNO = 0;
 	private final int IS_PROF = 1;
@@ -107,18 +102,12 @@ public class PaginaPrincipalController implements Initializable{
 			consultar.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					Telas.telaDadosAluno(entity.getMatricula());
+					Telas.telaDadosAluno(entity.getMatricula(),true);
 				}
 			});
-			Button editar = new Button("Editar");
-			editar.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					Telas.telaEditarAluno(entity);
-				}
-			});
+
 			
-			items.add(new ToolBar(tipo,arg1,arg2,consultar,editar));
+			items.add(new ToolBar(tipo,arg1,arg2,consultar));
 			items.get(i).setLayoutX(0);
 			items.get(i).setLayoutY(i*TOOLBAR_HIEGHT);
 			items.get(i).setPrefSize(TOOLBAR_WIDTH, TOOLBAR_HIEGHT);
@@ -153,18 +142,11 @@ public class PaginaPrincipalController implements Initializable{
 			consultar.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					//Telas.paginaConsultarProfessor(entity.getCpf());
-				}
-			});
-			Button editar = new Button("Editar");
-			editar.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					Telas.telaEditarProfessor(entity);
+					Telas.telaDadosProfessor(entity.getCpf());
 				}
 			});
 			
-			items.add(new ToolBar(tipo,arg1,arg2,consultar,editar));
+			items.add(new ToolBar(tipo,arg1,arg2,consultar));
 			items.get(i).setLayoutX(0);
 			items.get(i).setLayoutY(i*TOOLBAR_HIEGHT);
 			items.get(i).setPrefSize(TOOLBAR_WIDTH, TOOLBAR_HIEGHT);
@@ -198,7 +180,7 @@ public class PaginaPrincipalController implements Initializable{
 			consultar.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					//Telas.paginaConsultarTurma(entity.getMatricula());
+					
 				}
 			});
 			
@@ -232,7 +214,7 @@ public class PaginaPrincipalController implements Initializable{
 			arg2.setAlignment(Pos.CENTER);
 			arg2.setPrefWidth(150);
 			
-			if(minhaSecao == SecaoTipo.DIRETOR) {
+			if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.DIRETOR) {
 				Button editar = new Button("Editar");
 				editar.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
@@ -282,7 +264,7 @@ public class PaginaPrincipalController implements Initializable{
 				consultar.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						//Telas.paginaConsultarProfessor(entity.getCpf());
+						Telas.telaDadosAluno(entity.getMatricula(),true);
 					}
 				});
 				
@@ -321,7 +303,7 @@ public class PaginaPrincipalController implements Initializable{
 				consultar.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						//Telas.paginaConsultarProfessor(entity.getCpf());
+						Telas.telaDadosProfessor(entity.getCpf());
 					}
 				});
 				
@@ -354,12 +336,12 @@ public class PaginaPrincipalController implements Initializable{
 				arg2.setAlignment(Pos.CENTER);
 				arg2.setPrefWidth(150);
 				
-				if(minhaSecao == SecaoTipo.DIRETOR) {
+				if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.DIRETOR) {
 					Button editar = new Button("Editar");
 					editar.setOnAction(new EventHandler<ActionEvent>() {
 						@Override
 						public void handle(ActionEvent event) {
-							//Telas.paginaConsultarProfessor(entity.getCpf());
+							Telas.telaEditarDisciplina(entity);
 						}
 					});
 					
@@ -385,10 +367,22 @@ public class PaginaPrincipalController implements Initializable{
 	public void definirDisciplina() {}
 	@FXML
 	public void consultarDadosUsuario() {
-		
+		if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.ALUNO) {
+			Telas.telaDadosAluno(SecaoDTO.getSecao().getUsuarioId(),false);
+		}
+		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.PROFESSOR) {
+			Telas.telaDadosProfessor(SecaoDTO.getSecao().getUsuarioId());
+		}
 	}
 	@FXML
-	public void editarDadosUsuario() {}
+	public void editarDadosUsuario() {
+		if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.ALUNO) {
+			Telas.telaEditarAluno(null);
+		}
+		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.PROFESSOR) {
+			Telas.telaEditarProfessor(null);
+		}
+	}
 	@FXML
 	public void sair() {
 		Telas.telaLogin();
@@ -396,25 +390,27 @@ public class PaginaPrincipalController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		if(minhaSecao == SecaoTipo.DIRETOR) {
+		if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.DIRETOR) {
 			buttonDefinirDisciplina.setDisable(false);
 			buttonDefinirTurma.setDisable(false);
+			menuConsultar.setDisable(true);
+			menuEditar.setDisable(true);
 			userIcon.setText("Diretor");
 			userName.setText("Acesso Geral");
 			System.out.println("Seção diretor");
 		}
-		else if(minhaSecao == SecaoTipo.ALUNO) {
+		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.ALUNO) {
 			buttonDefinirDisciplina.setDisable(true);
 			buttonDefinirTurma.setDisable(true);
 			userIcon.setText("Aluno");
-			userName.setText(usuarioAtual.getUsuario());
+			userName.setText(SecaoDTO.getSecao().getUsuarioAtual().getUsuario());
 			System.out.println("Seção aluno");
 		}
-		else if(minhaSecao == SecaoTipo.PROFESSOR) {
+		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.PROFESSOR) {
 			buttonDefinirDisciplina.setDisable(true);
 			buttonDefinirTurma.setDisable(true);
 			userIcon.setText("Professor");
-			userName.setText(usuarioAtual.getUsuario());
+			userName.setText(SecaoDTO.getSecao().getUsuarioAtual().getUsuario());
 			System.out.println("Seção professor");
 		}
 		
