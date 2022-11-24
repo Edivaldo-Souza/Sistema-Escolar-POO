@@ -44,6 +44,17 @@ public class TurmaDAO extends StandardDAO<Turma> {
 	  }
   }
   
+  public void deletarTabelaAlunoTurma(String mat,int id) {
+	  String sql = "delete from tabela_aluno_turma where id_turma=? and mat_aluno=?;";
+	  try {
+		PreparedStatement ptst = getConnection().prepareStatement(sql);
+		ptst.setInt(1, id);
+		ptst.setString(2,mat);
+		ptst.execute();
+	  } catch (SQLException e) {
+		  e.printStackTrace();
+	  }
+  }
   public void deletarTabelaAlunoTurma(int id) {
 	  String sql = "delete from tabela_aluno_turma where id_turma=?;";
 	  try {
@@ -166,21 +177,18 @@ public class TurmaDAO extends StandardDAO<Turma> {
   }
   @Override
   public ResultSet findBySpecifiedField(Turma vo, String field) {
-    String sql = "SELECT * FROM Turma WHERE" + field + "=? ;";
+    String sql = "SELECT * FROM Turma WHERE "+field+"=?;";
 
     try {
       PreparedStatement pst = getConnection().prepareStatement(sql);
       switch (field) {
         case "codigoDisciplina":
-          sql = "SELECT * FROM Turma WHERE codigoDisciplina = ? ;";
           pst.setString(1, vo.getDisciplina().getCodigo());
           break;
         case "id":
-          sql = "SELECT * FROM Turma WHERE id = ? ;";
           pst.setInt(1, vo.getId());
           break;
-        case "codigoProfessor":
-        	sql = "SELECT * FROM Turma WHERE codigoProfessor = ?;";
+        case "codigoprofessor":
         	pst.setString(1, vo.getProfessor().getCpf());
         default:
           break;

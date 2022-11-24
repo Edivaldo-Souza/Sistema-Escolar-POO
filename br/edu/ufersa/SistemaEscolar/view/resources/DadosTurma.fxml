@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="1050.0" maxWidth="1900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.DadosAlunoController">
+<Pane maxHeight="1050.0" maxWidth="1900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.DadosTurmaController">
    <children>
       <Label fx:id="nome" layoutX="26.0" layoutY="14.0" prefHeight="84.0" prefWidth="367.0" text="Turma">
          <font>
             <Font size="57.0" />
          </font>
       </Label>
-      <Label layoutX="359.0" layoutY="98.0" text="Disciplina:">
+      <Label layoutX="332.0" layoutY="98.0" text="Disciplina:">
          <font>
             <Font size="18.0" />
          </font>
@@ -32,7 +33,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="disciplina" layoutX="453.0" layoutY="98.0" prefHeight="27.0" prefWidth="342.0">
+      <Label fx:id="disciplina" layoutX="426.0" layoutY="98.0" prefHeight="27.0" prefWidth="181.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -52,20 +53,23 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="status" layoutX="453.0" layoutY="137.0" prefHeight="27.0" prefWidth="99.0">
+      <Label fx:id="status" layoutX="424.0" layoutY="137.0" prefHeight="27.0" prefWidth="99.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="386.0" layoutY="137.0" text="Status:">
+      <Label layoutX="357.0" layoutY="137.0" text="Status:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TableView layoutX="63.0" layoutY="229.0" prefHeight="467.0" prefWidth="956.0">
-        <columns>
-          <TableColumn fx:id="alunos" prefWidth="955.0" text="Alunos" />
-        </columns>
-      </TableView>
+      <Button layoutX="600.0" layoutY="27.0" mnemonicParsing="false" onAction="#quit" prefHeight="35.0" prefWidth="36.0" text="X" />
+      <ScrollPane layoutX="36.0" layoutY="234.0" prefHeight="262.0" prefWidth="587.0">
+         <content>
+            <Pane fx:id="painel" prefHeight="261.0" prefWidth="585.0" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="matricula" layoutX="532.0" layoutY="199.0" mnemonicParsing="false" onAction="#matricular_se" text="Matricular-se" />
+      <Button fx:id="edNotas" layoutX="442.0" layoutY="199.0" mnemonicParsing="false" onAction="#editarNotas" text="Editar Notas" />
    </children>
 </Pane>

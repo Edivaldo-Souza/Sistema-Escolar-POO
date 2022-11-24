@@ -10,12 +10,13 @@ import br.edu.ufersa.SistemaEscolar.model.entities.ResultadoTurma;
 public class ResultadoTurmaDAO extends StandardDAO<ResultadoTurma> {
 	
 	public boolean insert(ResultadoTurma entity, String matricula) {
-		String sql = "insert into tabela_resultadoTurma (mat_aluno,cod_turma) values (?,?);";
+		String sql = "insert into tabela_resultadoTurma (mat_aluno,cod_turma,cod_disciplina) values (?,?,?);";
 		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, matricula);
 			ps.setInt(2, entity.getId_turma());
+			ps.setString(3, entity.getDisciplina().getCodigo());
 			ps.execute();
 		}
 		catch(SQLException sqle){
@@ -26,10 +27,11 @@ public class ResultadoTurmaDAO extends StandardDAO<ResultadoTurma> {
 	}
 
 	public boolean delete(ResultadoTurma entity, Aluno entity_A) {
-		String sql = "delete from tabela_resultadoTurma where mat_aluno=?;";
+		String sql = "delete from tabela_resultadoTurma where mat_aluno=? and cod_turma=?;";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, entity_A.getMatricula());
+			ps.setInt(2, entity.getId_turma());
 			ps.execute();
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();

@@ -201,6 +201,7 @@ public class PaginaPrincipalController implements Initializable{
 					public void handle(ActionEvent event) {
 						if(JOptionPane.showConfirmDialog(null, "Deseja excluir essa turma?")==0) {
 							turmaBO.delete(entity);
+							turmaBO.deletarTabelaAlunoTurma(entity.getId());
 							listarTurmas(event);
 						}
 					}

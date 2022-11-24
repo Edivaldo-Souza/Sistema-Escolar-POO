@@ -46,6 +46,9 @@ public class TurmaBO implements InterfaceServices<TurmaDTO>{
 	}
   }
   
+  public void deletarTabelaAlunoTurma(String matricula,int id) {
+	  dao.deletarTabelaAlunoTurma(matricula,id);
+  }
   public void deletarTabelaAlunoTurma(int id) {
 	  dao.deletarTabelaAlunoTurma(id);
   }
@@ -106,8 +109,10 @@ public class TurmaBO implements InterfaceServices<TurmaDTO>{
 	  catch(SQLException sqle) {
 			sqle.printStackTrace();
 			return null;
-		}
+		} 
   }
+  
+  
   
   public TurmaDTO findById(int id) {
 	  Turma turma = new Turma();
@@ -136,7 +141,7 @@ public class TurmaBO implements InterfaceServices<TurmaDTO>{
 	  Turma turma = new Turma();
 	  turma.converter(t);
 	  List<TurmaDTO> lista = new ArrayList<TurmaDTO>();	  	  
-	  ResultSet rs = dao.findBySpecifiedField(turma, "cpf");
+	  ResultSet rs = dao.findBySpecifiedField(turma, "codigoprofessor");
 	  try {
 		  while (rs.next()) {
 			  TurmaDTO to = new TurmaDTO();
@@ -187,4 +192,5 @@ public class TurmaBO implements InterfaceServices<TurmaDTO>{
 	    dao.delete(turma);
 		return false;
 	}
+	
 }

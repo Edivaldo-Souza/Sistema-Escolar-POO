@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="1050.0" maxWidth="1900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.DadosAlunoController">
+<Pane maxHeight="1050.0" maxWidth="1900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.SistemaEscolar.api.controllers.DadosProfessorController">
    <children>
-      <Label fx:id="nome" layoutX="26.0" layoutY="14.0" prefHeight="84.0" prefWidth="967.0" text="Nome do Professor">
+      <Label fx:id="nome" layoutX="26.0" layoutY="14.0" prefHeight="84.0" prefWidth="502.0" text="Dados do Professor">
          <font>
             <Font size="57.0" />
          </font>
@@ -17,7 +18,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="30.0" layoutY="98.0" text="CPF:">
+      <Label layoutX="430.0" layoutY="98.0" text="CPF:">
          <font>
             <Font size="18.0" />
          </font>
@@ -27,16 +28,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TableView layoutX="30.0" layoutY="243.0" prefHeight="433.0" prefWidth="793.0">
-        <columns>
-          <TableColumn fx:id="codDisciplina" prefWidth="75.0" text="Código" />
-          <TableColumn fx:id="nomeDisciplina" prefWidth="179.0" text="Disciplina" />
-            <TableColumn fx:id="local" prefWidth="179.0" text="Local" />
-            <TableColumn fx:id="horario" prefWidth="179.0" text="Horário" />
-            <TableColumn fx:id="status" prefWidth="179.0" text="Status" />
-        </columns>
-      </TableView>
-      <Label fx:id="cpf" layoutX="77.0" layoutY="98.0" prefHeight="27.0" prefWidth="142.0" text="XXX.XXX.XXX-XX">
+      <Label fx:id="cpf" layoutX="477.0" layoutY="98.0" prefHeight="27.0" prefWidth="142.0" text="XXX.XXX.XXX-XX">
          <font>
             <Font size="18.0" />
          </font>
@@ -46,5 +38,21 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label layoutX="30.0" layoutY="98.0" text="Nome:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="nome" layoutX="87.0" layoutY="98.0" prefHeight="27.0" prefWidth="142.0" text="XXX.XXX.XXX-XX">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="26.0" layoutY="224.0" prefHeight="262.0" prefWidth="587.0">
+         <content>
+            <Pane fx:id="painel" prefHeight="261.0" prefWidth="585.0" />
+         </content>
+      </ScrollPane>
+      <Button layoutX="596.0" layoutY="30.0" mnemonicParsing="false" onAction="#quit" prefHeight="35.0" prefWidth="34.0" text="X" />
    </children>
 </Pane>

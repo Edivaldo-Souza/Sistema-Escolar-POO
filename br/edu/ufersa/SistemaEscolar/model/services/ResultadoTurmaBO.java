@@ -22,36 +22,18 @@ public class ResultadoTurmaBO implements InterfaceServices<ResultadoTurmaDTO>{
 		Aluno al = new Aluno();
 		al.setMatricula(e.getMat_aluno());
 		resultado.converter(e);
-		ResultSet rs = dao.findBySpecifiedField(resultado, "cod_turma");
-		try {
-			if(rs == null || !(rs.next())) {
-				if(dao.insert(resultado)) return true;
-				else return false;
-			}
-			else return false;
-		}
-		catch(SQLException sqle) {
-			sqle.printStackTrace();
-			return false;
-		}
+		dao.insert(resultado,e.getMat_aluno());
+		return true;
 	}
 	
 	@Override
 	public boolean delete(ResultadoTurmaDTO e) {
 		ResultadoTurma resultado = new ResultadoTurma();
+		Aluno a = new Aluno();
+		a.setMatricula(e.getMat_aluno());
 		resultado.converter(e);
-		ResultSet rs = dao.findBySpecifiedField(resultado,"cod_turma");
-		try {
-			if(rs == null || !(rs.next())) {
-				if(dao.delete(resultado)) return true;
-				else return false;
-			}
-			else return false;
-		}
-		catch(SQLException sqle) {
-			sqle.printStackTrace();
-			return false;
-		}
+		dao.delete(resultado, a);
+		return true;
 	}
 	
 	@Override
