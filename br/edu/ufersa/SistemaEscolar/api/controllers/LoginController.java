@@ -49,7 +49,6 @@ public class LoginController {
 			return 0;
 		}
 		else{
-			
 			AlunoDTO alunoDto = new AlunoDTO();
 			alunoDto.setUsuario(usuario);
 			alunoDto.setSenha(senha);

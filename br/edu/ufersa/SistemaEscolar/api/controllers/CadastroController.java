@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -33,10 +34,13 @@ public class CadastroController {
 	@FXML
 	TextField bairroField;
 	
+	@FXML 
+	Label erroLabel;
+	
 	private Stage stage;
 	private Scene scene;
 	
-	private void switchToLogin(ActionEvent event) throws IOException{
+	public void switchToLogin(ActionEvent event) throws IOException{
 		Parent root = FXMLLoader.load(LoginController.class.getResource("/br/edu/ufersa/SistemaEscolar/view/resources/Login.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -55,7 +59,10 @@ public class CadastroController {
 		bairro = bairroField.getText().strip();
 		Integer numeroEndereco = Integer.parseInt(numeroField.getText().strip());
 		
-		if(cpfOrMatricula.contains(".")) {
+		if(nome.isBlank() || cpfOrMatricula.isBlank() || usuario.isBlank() || senha.isBlank() || rua.isBlank() || bairro.isBlank()) {
+			erroLabel.setText("Campo(s) em branco");
+			return;
+		}else if(cpfOrMatricula.contains(".")) {
 			ProfessorDTO novoProfessor = new ProfessorDTO();
 			novoProfessor.setNome(nome);
 			novoProfessor.setUsuario(usuario);
