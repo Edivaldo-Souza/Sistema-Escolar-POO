@@ -50,16 +50,16 @@ public class CadastroController {
 	
 	public void registerUser(ActionEvent event) throws IOException {
 		
-		String nome,usuario,senha,cpfOrMatricula,rua,bairro;
+		String nome,usuario,senha,cpfOrMatricula,rua,bairro,numero;
 		nome = nomeField.getText().strip();
 		cpfOrMatricula = cpfOrMatriculaField.getText().strip();
 		usuario = usuarioField.getText().strip();
 		senha = senhaField.getText().strip();
 		rua = ruaField.getText().strip();
 		bairro = bairroField.getText().strip();
-		Integer numeroEndereco = Integer.parseInt(numeroField.getText().strip());
-		
-		if(nome.isBlank() || cpfOrMatricula.isBlank() || usuario.isBlank() || senha.isBlank() || rua.isBlank() || bairro.isBlank()) {
+		numero = numeroField.getText().strip();
+				
+		if(nome.isBlank() || cpfOrMatricula.isBlank() || usuario.isBlank() || senha.isBlank() || rua.isBlank() || bairro.isBlank() || numero.isBlank()) {
 			erroLabel.setText("Campo(s) em branco");
 			return;
 		}else if(cpfOrMatricula.contains(".")) {
@@ -70,7 +70,7 @@ public class CadastroController {
 			novoProfessor.setCpf(cpfOrMatricula);
 			novoProfessor.setRua(rua);
 			novoProfessor.setBairro(bairro);
-			novoProfessor.setNumeroEndereco(numeroEndereco);
+			novoProfessor.setNumeroEndereco(Integer.parseInt(numero));
 			new ProfessorBO().insert(novoProfessor);
 		}else {
 			AlunoDTO novoAluno = new AlunoDTO();
@@ -80,7 +80,7 @@ public class CadastroController {
 			novoAluno.setMatricula(cpfOrMatricula);
 			novoAluno.setRua(rua);
 			novoAluno.setBairro(bairro);
-			novoAluno.setNumeroEndereco(numeroEndereco);
+			novoAluno.setNumeroEndereco(Integer.parseInt(numero));
 			new AlunoBO().insert(novoAluno);
 		}	
 		switchToLogin(event);
