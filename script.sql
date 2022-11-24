@@ -1,4 +1,7 @@
 create database bd_sisescolar;
+#Credencias do Banco
+#usuario:root
+#senha:escola123
 
 use bd_sisescolar;
 
