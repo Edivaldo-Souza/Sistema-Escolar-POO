@@ -92,6 +92,7 @@ public class DefinirTurma_AController implements InterfaceController,Initializab
 				System.out.println("alterando nova turma: " + turma.getId());
 				turmaBo.alter(turma);
 				setTurma(turma);
+				setTurma(null);
 				Telas.paginaPrincipal();
 			}
 		}
@@ -99,6 +100,7 @@ public class DefinirTurma_AController implements InterfaceController,Initializab
 	// Event Listener on Button.onAction
 	@FXML
 	public void quit(ActionEvent event) {
+		setTurma(null);
 		Telas.paginaPrincipal();
 	}
 	@Override

@@ -85,6 +85,7 @@ public class LoginController {
 
 	}
 	
+	@FXML
 	public void switchToRegister(ActionEvent event) throws IOException{
 		Parent root = FXMLLoader.load(LoginController.class.getResource("/br/edu/ufersa/SistemaEscolar/view/resources/Cadastro.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

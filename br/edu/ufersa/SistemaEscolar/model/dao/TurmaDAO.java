@@ -79,21 +79,6 @@ public class TurmaDAO extends StandardDAO<Turma> {
 	  }
   }
   
-  public ResultSet findLastTurma() {
-	  String sql = "select * from turma order by id desc limit 1;";
-	  try {
-		  PreparedStatement pst = getConnection().prepareStatement(sql);
-		  ResultSet rs = pst.executeQuery();
-		  return rs;
-	  }
-	  catch (SQLException e) {
-	      // TODO: handle exception
-	      e.printStackTrace();
-	      return null;
-	    }
-  }
-  
-  
   public boolean alter(Turma vo) {
 	  
     String sql = "update Turma set horario = ?, local = ?, status = ?, codigoDisciplina = ?, codigoProfessor = ? where id = ?";

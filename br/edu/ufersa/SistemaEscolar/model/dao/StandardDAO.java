@@ -62,8 +62,4 @@ public class StandardDAO<type> implements InterfaceDAO<type> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	public ResultSet findLastTurma() {
-		return null;
-	}
 }

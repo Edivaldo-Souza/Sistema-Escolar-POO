@@ -25,27 +25,6 @@ public class TurmaBO implements InterfaceServices<TurmaDTO>{
 	  dao.inserirTabelaAlunoTurma(matricula,id);
   }
   
-  public TurmaDTO ultimaTurmaInserida() {
-	  TurmaDTO t = new TurmaDTO();
-	  ResultSet rs = dao.findLastTurma();
-	  try {
-		while(rs.next()) {
-			  t.setId(rs.getInt("id"));
-			  t.setCodDisciplina(rs.getString("codigoDisciplina"));
-			  t.setCodProfessor(rs.getString("codigoProfessor"));
-			  t.setHorario(rs.getString("horario"));
-			  t.setLocal(rs.getString("local"));
-			  t.setStatus(rs.getBoolean("status"));
-			  
-		  }
-		return t;
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return null;
-	}
-  }
-  
   public void deletarTabelaAlunoTurma(String matricula,int id) {
 	  dao.deletarTabelaAlunoTurma(matricula,id);
   }
@@ -159,23 +138,6 @@ public class TurmaBO implements InterfaceServices<TurmaDTO>{
 	      e.printStackTrace();
 	      return null;
 	    }
-  }
-
-  public boolean removeBySpecificField(Turma vo, String field) {
-    ResultSet rs = dao.findBySpecifiedField(vo, field);
-    try {
-      if (rs != null && rs.next()) {
-        if (dao.delete(vo) == true) {
-          return true;
-        } else
-          return false;
-      } else
-        return false;
-    } catch (SQLException e) {
-      // TODO: handle exception
-      e.printStackTrace();
-      return false;
-    }
   }
 
   public boolean alter(TurmaDTO vo) {

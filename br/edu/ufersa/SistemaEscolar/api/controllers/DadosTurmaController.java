@@ -97,17 +97,19 @@ public class DadosTurmaController implements Initializable {
 			edNotas.setDisable(false);
 			matricula.setDisable(true);
 		}
-		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.PROFESSOR) {
+		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.PROFESSOR || SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.DIRETOR) {
 			matricula.setDisable(true);
 			edNotas.setDisable(true);
 		}
 		else edNotas.setDisable(true);
 		
-		for(int i = 0; i<lista.size(); i++) {
-			if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.ALUNO &&
-					SecaoDTO.getSecao().getUsuarioId().contains(lista.get(i).getMatricula())) {
-				podeMatricular = false;
-				break;
+		if(lista!=null) {
+			for(int i = 0; i<lista.size(); i++) {
+				if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.ALUNO &&
+						SecaoDTO.getSecao().getUsuarioId().contains(lista.get(i).getMatricula())) {
+					podeMatricular = false;
+					break;
+				}
 			}
 		}
 		
