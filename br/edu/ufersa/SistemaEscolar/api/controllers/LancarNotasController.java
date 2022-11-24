@@ -59,7 +59,7 @@ public class LancarNotasController implements Initializable{
 	private ObservableList<ResultadoTurmaDTO> listaNotas;
 	// Event Listener on Button.onAction
 	@FXML
-	public void save(ActionEvent event) {
+	public void save() {
 		bo = new ResultadoTurmaBO();
 		ObservableList<ResultadoTurmaDTO> obList = tabelaNotas.getItems();
 		
@@ -77,6 +77,7 @@ public class LancarNotasController implements Initializable{
 	@FXML
 	public void lancarNotas(ActionEvent event) {
 		if(JOptionPane.showConfirmDialog(null,"Deseja finalizar a turma?")==0) {
+			save();
 			TurmaDTO e = new TurmaDTO();
 			turmaBO = new TurmaBO();
 			e = turmaBO.findById(id_turma);

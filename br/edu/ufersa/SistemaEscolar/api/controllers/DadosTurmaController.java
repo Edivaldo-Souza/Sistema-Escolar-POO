@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.DisciplinaDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
@@ -201,6 +203,9 @@ public class DadosTurmaController implements Initializable {
 	}
 	@FXML
 	public void editarNotas() {
-		Telas.telaLancarNotas(idValue);
+		if(t.isStatus()) Telas.telaLancarNotas(idValue);
+		else {
+			JOptionPane.showMessageDialog(null, "Turma já finalizada!");
+		}
 	}
 }
