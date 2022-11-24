@@ -29,6 +29,7 @@
         <items>
           <MenuItem fx:id="menuConsultar" mnemonicParsing="false" onAction="#consultarDadosUsuario" text="Consultar Dados" />
           <MenuItem fx:id="menuEditar" mnemonicParsing="false" onAction="#editarDadosUsuario" text="Editar Dados" />
+            <MenuItem fx:id="excluirConta" mnemonicParsing="false" onAction="#excluir" text="Excluir Conta" />
             <MenuItem mnemonicParsing="false" onAction="#sair" text="Sair" />
         </items>
       </MenuButton>

@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import br.edu.ufersa.SistemaEscolar.view.Telas;
 import br.edu.ufersa.SistemaEscolar.api.dto.*;
 import br.edu.ufersa.SistemaEscolar.model.services.SecaoTipo;
@@ -44,6 +46,8 @@ public class PaginaPrincipalController implements Initializable{
 	private MenuItem menuConsultar;
 	@FXML
 	private MenuItem menuEditar;
+	@FXML
+	private MenuItem excluirConta;
 	
 	private AlunoBO alunoBO;
 	private ProfessorBO profBO;
@@ -183,8 +187,30 @@ public class PaginaPrincipalController implements Initializable{
 					Telas.telaDadosTurma(entity.getId());
 				}
 			});
+			if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.DIRETOR) {
+				Button editar = new Button("Editar");
+				editar.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						Telas.telaDefinirTurma_A(entity);
+					}
+				});
+				Button excluir = new Button("X");
+				excluir.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						if(JOptionPane.showConfirmDialog(null, "Deseja excluir essa turma?")==0) {
+							turmaBO.delete(entity);
+							listarTurmas(event);
+						}
+					}
+				});
+				items.add(new ToolBar(tipo,arg1,arg2,consultar,editar,excluir));
+			}
+			else {
+				items.add(new ToolBar(tipo,arg1,arg2,consultar));
+			}
 			
-			items.add(new ToolBar(tipo,arg1,arg2,consultar));
 			items.get(i).setLayoutX(0);
 			items.get(i).setLayoutY(i*TOOLBAR_HIEGHT);
 			items.get(i).setPrefSize(TOOLBAR_WIDTH, TOOLBAR_HIEGHT);
@@ -222,8 +248,17 @@ public class PaginaPrincipalController implements Initializable{
 						Telas.telaEditarDisciplina(entity);
 					}
 				});
-				
-				items.add(new ToolBar(tipo,arg1,arg2,editar));
+				Button excluir = new Button("X");
+				excluir.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						if(JOptionPane.showConfirmDialog(null, "Deseja excluir essa disciplina?")==0) {
+							disciplinaBO.delete(entity);
+							listarDisciplinas(event);
+						}
+					}
+				});
+				items.add(new ToolBar(tipo,arg1,arg2,editar,excluir));
 			}
 			else {
 				items.add(new ToolBar(tipo,arg1,arg2));
@@ -386,6 +421,29 @@ public class PaginaPrincipalController implements Initializable{
 		}
 	}
 	@FXML
+	public void excluir() {
+		if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.ALUNO) {
+			if(JOptionPane.showConfirmDialog(null,"Deseja excluir sua conta?")==0) {
+				alunoBO = new AlunoBO();
+				AlunoDTO e = new AlunoDTO();
+				e.setMatricula(SecaoDTO.getSecao().getUsuarioId());
+				e.setBairro("0"); e.setNome("0"); e.setNumeroEndereco(0); e.setRua("0"); e.setSenha("0"); e.setUsuario("0");
+				alunoBO.delete(e);
+				Telas.telaLogin();
+			}
+		}
+		else if(SecaoDTO.getSecao().getMinhaSecao() == SecaoTipo.PROFESSOR) {
+			if(JOptionPane.showConfirmDialog(null,"Deseja excluir sua conta?")==0) {
+				profBO = new ProfessorBO();
+				ProfessorDTO e = new ProfessorDTO();
+				e.setCpf(SecaoDTO.getSecao().getUsuarioId());
+				e.setBairro("0"); e.setNome("0"); e.setNumeroEndereco(0); e.setRua("0"); e.setSenha("0"); e.setUsuario("0");
+				profBO.delete(e);
+				Telas.telaLogin();
+			}
+		}
+	}
+	@FXML
 	public void sair() {
 		Telas.telaLogin();
 	}
@@ -397,6 +455,7 @@ public class PaginaPrincipalController implements Initializable{
 			buttonDefinirTurma.setDisable(false);
 			menuConsultar.setDisable(true);
 			menuEditar.setDisable(true);
+			excluirConta.setDisable(true);
 			userIcon.setText("Diretor");
 			userName.setText("Acesso Geral");
 			System.out.println("Seção diretor");

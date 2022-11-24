@@ -59,14 +59,16 @@ public class DadosProfessorController implements Initializable {
 		cpf.setText(prof.getCpf());
 		endereco.setText(prof.getRua()+" "+prof.getBairro()+" "+prof.getNumeroEndereco());
 		List<TurmaDTO> turmas = Tbo.turmasProfessor(t);
-		listaTurmas = FXCollections.observableArrayList(turmas);
-		codigo.setCellValueFactory(new PropertyValueFactory<>("codDisciplina"));
-		disciplina.setCellValueFactory(new PropertyValueFactory<>("nomeDisciplina"));
-		local.setCellValueFactory(new PropertyValueFactory<>("local"));
-		horario.setCellValueFactory(new PropertyValueFactory<>("horario"));
-		status.setCellValueFactory(new PropertyValueFactory<>("status"));
-		tabelaTurmas.setItems(listaTurmas);
 		
+		if(turmas!=null) {
+			listaTurmas = FXCollections.observableArrayList(turmas);
+			codigo.setCellValueFactory(new PropertyValueFactory<>("codDisciplina"));
+			disciplina.setCellValueFactory(new PropertyValueFactory<>("nomeDisciplina"));
+			local.setCellValueFactory(new PropertyValueFactory<>("local"));
+			horario.setCellValueFactory(new PropertyValueFactory<>("horario"));
+			status.setCellValueFactory(new PropertyValueFactory<>("status"));
+			tabelaTurmas.setItems(listaTurmas);
+		}
 		
 	}
 	

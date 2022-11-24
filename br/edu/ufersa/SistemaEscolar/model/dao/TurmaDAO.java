@@ -206,4 +206,18 @@ public class TurmaDAO extends StandardDAO<Turma> {
 			return null;
 		}
   }
+  
+  public boolean delete(Turma entity) {
+	  String sql = "delete from turma WHERE id=?";
+	  try {
+	      PreparedStatement pst = getConnection().prepareStatement(sql);
+	      pst.setInt(1, entity.getId());
+	      pst.execute();
+	      return true;
+	    } catch (SQLException e) {
+	      // TODO: handle exception
+	      e.printStackTrace();
+	      return false;
+	    } 
+  }
 }

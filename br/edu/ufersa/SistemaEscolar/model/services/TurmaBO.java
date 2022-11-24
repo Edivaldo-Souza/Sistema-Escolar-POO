@@ -11,13 +11,14 @@ import br.edu.ufersa.SistemaEscolar.api.dto.AlunoDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.TurmaDTO;
 import br.edu.ufersa.SistemaEscolar.model.dao.StandardDAO;
 
-public class TurmaBO {
+public class TurmaBO implements InterfaceServices<TurmaDTO>{
 	TurmaDAO dao = new TurmaDAO();
 
-  public void insert(TurmaDTO vo) {
+  public boolean insert(TurmaDTO vo) {
 	Turma turma = new Turma();
 	turma.converter(vo);
-    dao.insert(turma); 
+    dao.insert(turma);
+    return true;
   }
   
   public void insertTabelaAlunoTurma(String matricula,int id) {
@@ -178,4 +179,12 @@ public class TurmaBO {
     dao.alter(turma);
     return true;
   }
+
+	@Override
+	public boolean delete(TurmaDTO entity) {
+		Turma turma = new Turma();
+		turma.converter(entity);
+	    dao.delete(turma);
+		return false;
+	}
 }

@@ -40,7 +40,7 @@ public class LoginController {
 		usuario = usuarioField.getText().strip();
 		senha = senhaField.getText().strip();
 		
-		if(usuarioField.getText().length()<=1 && senhaField.getText().length()<=1) {
+		if(usuarioField.getText().contains("diretor") && senhaField.getText().contains("diretor123")) {
 			System.out.println("seção do diretor");
 			SecaoDTO.getSecao().setMinhaSecao(SecaoTipo.DIRETOR);
 			SecaoDTO.getSecao().setUsuarioAtual(null);

@@ -12,7 +12,7 @@ import br.edu.ufersa.SistemaEscolar.model.dao.DisciplinaDAO;
 import br.edu.ufersa.SistemaEscolar.api.dto.DisciplinaDTO;
 import br.edu.ufersa.SistemaEscolar.api.dto.ProfessorDTO;
 
-public  class DisciplinaBO{
+public  class DisciplinaBO implements InterfaceServices<DisciplinaDTO>{
 	StandardDAO<Disciplina> dao = new DisciplinaDAO();
 	
 	public boolean insert(Disciplina e) {
@@ -118,5 +118,35 @@ public  class DisciplinaBO{
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+
+	@Override
+	public boolean insert(DisciplinaDTO entity) {
+		Disciplina e = new Disciplina();
+		e.converter(entity);
+		dao.insert(e);
+		return false;
+	}
+
+
+
+	@Override
+	public boolean delete(DisciplinaDTO entity) {
+		Disciplina e = new Disciplina();
+		e.converter(entity);
+		dao.delete(e);
+		return false;
+	}
+
+
+
+	@Override
+	public boolean alter(DisciplinaDTO entity) {
+		Disciplina e = new Disciplina();
+		e.converter(entity);
+		dao.alter(e);
+		return false;
 	}
 }
