@@ -57,5 +57,6 @@ create table tabela_resultadoTurma(
     media float,
     frequencia float,
     cod_turma int references turma(id),
-    mat_aluno varchar(15) references tabela_aluno(matricula)
+    mat_aluno varchar(15) references tabela_aluno(matricula),
+    situacao boolean
 );
